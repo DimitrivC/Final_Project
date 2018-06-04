@@ -7,7 +7,7 @@ Suppose you have some money you want to donate to charity, and you're pretty cer
 Roughly, the app determines which charity of the user's own choosing has the highest expected value, based on the user's values, and thus rationally speaking should be chosen.
 
 ### Login
-@@ Login Picture
+![alt text](https://github.com/DimitrivC/Final_Project/blob/master/doc/Login%20Final%20Project.png)
 To use this app, a user has to be logged in via Firebase (so that the expected value calculations can be shared with other users). If the user is unaware of what the app does, she can click on the Information icon to get an explanation via a Fragment:
 @@ picture fragment.
 If a user has no account yet, she can click on the "Create new account" button to create a new account. She will be forwarded to:
