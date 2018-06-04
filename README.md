@@ -71,4 +71,4 @@ Firebase; maybe some math library.
 At least: http://developer.everydayhero.com/charities/
 
 ### Similar apps
-There are several apps for choosing charities (e.g. Charity Navigator), but they don't seem to use expected value/utility calculations.
+There are several apps for choosing charities (e.g. Charity Navigator), but they don't seem to use expected value/utility calculations. Since their approach is different, I don't know if these are particularly relevant for me from a technical point of view. As far as I can tell, there are no apps which are specifically designed to determine the expected utility/value.
