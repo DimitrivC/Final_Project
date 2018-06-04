@@ -10,15 +10,18 @@ Roughly, the app determines which charity of the user's own choosing has the hig
 ![alt text](https://github.com/DimitrivC/Final_Project/blob/master/doc/Login%20Final%20Project.png)
 
 To use this app, a user has to be logged in via Firebase (so that the expected value calculations can be shared with other users). If the user is unaware of what the app does, she can click on the Information icon to get an explanation via a Fragment:
-@@ picture fragment.
+![alt text](https://github.com/DimitrivC/Final_Project/blob/master/doc/Info%20Frament%20Login%20Final%20Project.png)
+
 If a user has no account yet, she can click on the "Create new account" button to create a new account. She will be forwarded to:
 
 ### Create new acount
-@@ Creat new account picture
+![alt text](https://github.com/DimitrivC/Final_Project/blob/master/doc/Create%20New%20Account%20Final%20Project.png)
+
 Here the user is able to create a new account. If succesful (or if she logs in via Login), she will be forwarded to:
 
 ### Main
-@@ Main picture
+![alt text](https://github.com/DimitrivC/Final_Project/blob/master/doc/Main%20Final%20Project.png)
+
 The user create various charities by clicking on the button "Add charity." Charities can be selected via an API: http://developer.everydayhero.com/charities/  (such as some charity, other charity or another one in the picture) or she can add her own charities by adding the name herself.
 
 For each charity there will be several outcomes that might come about if the user chooses that particular option. For example, the charity: completely achieves what is promised; almost achieves what is promished; ....; fails completely to achieve what is promised; makes matters worse.
@@ -36,16 +39,19 @@ There's also a button to show the saved charities of others, "Show charities." Y
 If the user presses the button "Calculate!":
 
 ### Calculate
-@@ Picture
+![alt text](https://github.com/DimitrivC/Final_Project/blob/master/doc/Calculator%20Final%20Project.png)
+
 For each charity it's calculated what the the expected value is. The probability of each outcome is multiplied with the numerical value assigned to that particular outcome, and all this is added together. Rationally speaking, the user should choose the charity with the highest expected utility. She can click a button to be forwarded to that website.
 
 
 ### Add saved charity
-@@ picture
+![alt text](https://github.com/DimitrivC/Final_Project/blob/master/doc/Add%20Saved%20Charities%20Final%20Project.png)
+
 The user will see a list of all charties, together with probabilites assigned to outcomes as well as numerical values assigned to those outcomes, and can select one or more charities to add to the calculation. These charities with data are created via (which can be accessed via Main):
 
 ### Save new charity
-@@ picture
+![alt text](https://github.com/DimitrivC/Final_Project/blob/master/doc/Save%20new%20Charity%20Final%20Project.png)
+
 The user can select a charity from the API mentioned above, or name one herself if it's not on the list. She can then select probabilities and numerical values. She can then save this for later use. 
 
 
@@ -59,7 +65,6 @@ The user can select a charity from the API mentioned above, or name one herself 
 
 ### Similar apps
 
-@@@ Check my file
 @@@ check requirements/ proposal.
 @@@ What is optional? What is required?
 @@@ make pictures.
