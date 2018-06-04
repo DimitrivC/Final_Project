@@ -8,6 +8,7 @@ Roughly, the app determines which charity of the user's own choosing has the hig
 
 ### Login
 ![alt text](https://github.com/DimitrivC/Final_Project/blob/master/doc/Login%20Final%20Project.png)
+
 To use this app, a user has to be logged in via Firebase (so that the expected value calculations can be shared with other users). If the user is unaware of what the app does, she can click on the Information icon to get an explanation via a Fragment:
 @@ picture fragment.
 If a user has no account yet, she can click on the "Create new account" button to create a new account. She will be forwarded to:
@@ -18,9 +19,9 @@ Here the user is able to create a new account. If succesful (or if she logs in v
 
 ### Main
 @@ Main picture
-The user create various charities by clicking on the button "Add charity." Charities can be selected via an API: http://developer.everydayhero.com/charities/ or she can add her own charities by adding the name herself.
+The user create various charities by clicking on the button "Add charity." Charities can be selected via an API: http://developer.everydayhero.com/charities/  (such as some charity, other charity or another one in the picture) or she can add her own charities by adding the name herself.
 
-For each option there will be several outcomes that might come about if the user chooses that particular option. For example, the charity: completely achieves what is promised; almost achieves what is promished; ....; fails completely to achieve what is promised; makes matters worse.
+For each charity there will be several outcomes that might come about if the user chooses that particular option. For example, the charity: completely achieves what is promised; almost achieves what is promished; ....; fails completely to achieve what is promised; makes matters worse.
 
 For each outcome the user has to insert the probability of it happening if she donates to that particular charity. The total has to be a 100, and the user has to insert an integer. If a user exceeds 100 she's notified. It is shown how many percentage has to be diveded amongst the outcomes with no assigned probability. Suppose that the user has no idea, then the user can press the button "No clue!", in which case the percentages are divided equally amongst all options.
 
@@ -30,9 +31,13 @@ The user can also add to the calculation options she has saved. These can be sel
 
 There's an info button showing brief descriptions of each of the buttons to ensure that the user knows how to use the app. There's a log out buttom to log out. The user will return to Login.
 
-There's also a button to show the saved charities of others, "Show charities." You can share your charities, with numerical values and probabilities assigned to outcomes with other users. You will see this via a fragment. You can combine this 
+There's also a button to show the saved charities of others, "Show charities." You can share your charities, with numerical values and probabilities assigned to outcomes with other users. You will see this via a fragment. 
 
-If the user presses the button "Calculate!" it will be calculated for each charity what the expected value is. The probability of each outcome is multiplied with the numerical value assigned to that particular outcome, and all this is added together. Rationally speaking, the user should choose the charity with the highest expected utility. She can click a button to be forwarded to that website.
+If the user presses the button "Calculate!":
+
+### Calculate
+@@ Picture
+For each charity it's calculated what the the expected value is. The probability of each outcome is multiplied with the numerical value assigned to that particular outcome, and all this is added together. Rationally speaking, the user should choose the charity with the highest expected utility. She can click a button to be forwarded to that website.
 
 
 ### Add saved charity
