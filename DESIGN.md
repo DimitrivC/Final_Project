@@ -8,6 +8,7 @@ About the format of the description: (i), (ii), (iii), link to picure.
 
 ## Login_Activity
 (i) The user can reach this via:
+
   (a) Starting the app. This is the first Activity.
     Required:
   (b) By logging out via Main_Activity; Calculate_Activity; Add_Saved_Charity_Activity; Save_New_Charity_Activity (so, all other activities with the exeption of Create_New_Account_Activity).
