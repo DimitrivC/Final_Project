@@ -8,7 +8,6 @@ About the format of the description: (i), (ii), (iii), link to picure.
 
 ## Login_Activity
 (i) The user can reach this via:
-
   (a) Starting the app. This is the first Activity.
     Required:
   (b) By logging out via Main_Activity; Calculate_Activity; Add_Saved_Charity_Activity; Save_New_Charity_Activity (so, all other activities with the exeption of Create_New_Account_Activity).
@@ -37,10 +36,10 @@ About the format of the description: (i), (ii), (iii), link to picure.
     Required:  
   
 ## Create_New_Account_Activity
-(i) She can reach this Activity via:
+(i) The user can reach this Activity via:
   (a) Login_Activity: by clicking the button "Create New Account."
   (b) Main_Activity: by clicking the backpressbutton if the user had created an account and then went to Main_Activity.
-(ii) She can:
+(ii) The user can:
   (1) Enter a username suitable for Firebase.
     Required:
   (2) Enter a password suitable for Firebase.
@@ -73,21 +72,25 @@ About the format of the description: (i), (ii), (iii), link to picure.
     Required: Icon; onClick function for Icon; Fragment linked to Icon; text in Icon.
   (2) Click on a button with the text "Log out" to log out.
     Required: Button for Logging out saying "Log out" (xml file); onClick function added to button (xml); onClick function for button (java) containing: Firebase thing for loggin out; intent to go to Login_Activity; finish.
-  (3) Click on a button with the text "Add charity" to:
-      (3.1) Select a charity. If the user clicks on the "Add charity" button, she will see a list, attached to the button, which she can scroll down. The list contains names of charities retrieved via the API: http://developer.everydayhero.com/charities/
-        Required: button, list
-      (3.2) Name a charity. At the top of the list, there's an option "Insert charity." If the users clicks this, there will be a table, with no name:
-      If the user (3.1) selects a charity or (3.2) names a charity, we will see a table, with above it the name of the charity which has been selected, or 
-      Then show table, @@. See (5).
+  (3) Click on a button with the text "Add charity". She will see a scrollable list attached to the button:
+    Required: button; onClick; scrolable list
+    (3.1) On the list If the user clicks on the "Add charity" button, she will see a list, attached to the button, which she can scroll down. The list contains names of charities retrieved via the API: http://developer.everydayhero.com/charities/
+        Required: list should be filled with API content, dynamic; options should be clickable.
+    (3.2) Name a charity. At the top of the list, there's an option "Insert charity." If the users clicks this, there will be a table, with no name:
+      If the user (3.1) selects a charity or (3.2) names a charity, we will see a table, with above it the name of the charity which has been selected, or @@@ name inserted isn't there yet.
+      The table has X rows and three columns. The three columns are:
+      Outcome (left): (Above the top most table directly above this column is the text: ). This content cannot be changed. The number of outcomes determines the number of rows.
+        Required:
+      Probability (middle):
+        Required:
+      Value (right):
+        Required:
       Both the selecting and inserting can be done multiple times, but it seems that it's useful to have a limit to the amount that can be selected/named.
       
-  Select a charity by clicking on a button with the text ". This can be done multiple times, but it seems there should be a limit, which should include (4). She can only select charities she hasn't selected before.
-    Required:
-  (4) Insert a charity herself, via the same route as (3) Select a charity. She can only insert charities she hasn't inserted before (so the name should be differet), and cannot insert charities with a name similar to one of the charities she has selected via (3). Furthermore, there's a limit for the amount of times she can do this, which also takes into account (3) (it is the same limit as mentioned by (3)).
-    Required:
-  (5) If (3) or (4) is done, she can, for that particular charity:
-    Required:
-  (6) Calculate button. If she hasn't done what was required, she will be notified. Specifically: @@.
+  (6) Clik a button:
+  Calculate button. If she hasn't done what was required, she will be notified. Specifically: @@.
+  Save new Charity
+  Add Saved charity.
     Required:
 (iii) Also required:
   (a) Check to see if the user is logged in via Firebase as soon as the user reaches this Activity. If not, she will be redirected to Login_Activity. If she is, nothing happens (so she remains on this page).
@@ -98,24 +101,22 @@ About the format of the description: (i), (ii), (iii), link to picure.
     Required:
   
 ## Calculate_Activity
-There will be a check to see if the user is logged in via Firebase: If not, she will be directed to Login_Activity. If she is, nothing happens so she can remain on the page.
-  Required:
-If the user pressed the Calculate Button from Main_Activity and this was successful (that is, she fulfilled the requirements), she will be forwarded to this Activity.
-It will be calculated what Charity @@
-  Required:
-(ii) She can:
+(i) The user can reach this via:
+  (a) Main_Activity: if the user pressed the button with the text "Calculate!" from Main_Activity, and some requirements were met, she's directed to this Activity.
+  Required: the data with the calculations is retrieved from the intent created in Main_Acitivty in the onClick from the button with the text "Calculate!" from Main_Activity.
+(ii) The user can:
   (1) See what the expected utility of each charity is.
-      Required: table with that content; the content is calculated.
+      Required: data from the intent from Main_Activity is taken and put in special table; table.
   (2) See what charity has the highest expected utility in a separate field.
-      Required:
+      Required: box for that content; data has to be taken from intent from Main_Activity.
   (3) If the charitiy with the highest expected utility was selected rather than inserted, there is a button she can click to direct herself to the website of the charity.
       Required: button with text "Go to the website of "insert charity name here""(xml); onClick function added to button (xml); onClick  function for button (java) containing: method for going to website of charity; finishig this activity? No, don't think so.
   (4) Click a button to do the calculations again.
-  (5) Log out.
-    Required:
+  (5) Click on button with text "Log out" to log out.
+    Required: button with text "Log out" (xml); onClick for that button (xml); onClick for that button (java) containing: function to log out from Firebase & redirect to Login_Activity via intent.
 (iii) Also required:
   (a) Check if the user is logged in via Firebase. If not, she will be directed to Login_Activity. If she is, nothing happens (so she remains on the page).
-    Required:
+    Required: Firebase access;
   (b) Nice background
     Required:
   (c) Title of page
