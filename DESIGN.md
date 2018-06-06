@@ -1,4 +1,4 @@
-Calculating the Expected Utility of Charities
+# Calculating the Expected Utility of Charities
 
 
 ![alt text](https://github.com/DimitrivC/Final_Project/blob/master/doc/All%20Activities%20Final%20Project.png)
