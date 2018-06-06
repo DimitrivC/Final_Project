@@ -183,5 +183,5 @@ http://developer.everydayhero.com/charities/
 ## Datasources
 Firebase
 
-(I don't know what "utility modules" are. The methods are mentioned above, and it's explained in the text when they are used, and what they, roughly of course, do).
+(I don't know (and realized this a bit too late) what "utility modules" are. The methods are mentioned above, and it's explained in the text when they are used, and what they, roughly of course, do).
  
