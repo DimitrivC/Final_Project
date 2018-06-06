@@ -9,52 +9,48 @@ About the format of the description: (i), (ii), (iii), link to picure.
 ## Login_Activity
 (i) The user can reach this via:
   (a) Starting the app. This is the first Activity.
-    Required:
-  (b) By logging out via Main_Activity; Calculate_Activity; Add_Saved_Charity_Activity; Save_New_Charity_Activity (so, all other activities with the exeption of Create_New_Account_Activity).
-    Required:
-  (c) By pressing backpressbutton via Main_Activity. (but, this should be overrided: the user should then leave the app?).
-    Required:
+    Required: Specify in manifest that it is the launcher Activity.
+  (b) By logging out from Firebase via Main_Activity; Calculate_Activity; Add_Saved_Charity_Activity; Save_New_Charity_Activity (so, all other activities with the exeption of Create_New_Account_Activity).
+    Required: nothing in particular (see other activities).
+  (c) By pressing backpressbutton via Main_Activity. But, this should be overrided: the user should then leave the app?).
+    Required: Override backpress in Main_Activity.
   (d) By pressing bakcpressbutton via Create_New_Account_Activity
-    Required:
+    Required: nothing in particular.
 (ii) The user can:
-  (1) Click on the information Icon. If she does, she will see a @Fragment, with text explaining the app.
-    Required: Icon (xml); onClick function for Icon (xml); onClick function for Icon (java) containing: stuff to show @Fragment; text in Fragment
+  (1) Click on the information Icon. If she does, she will see a Dialog Fragment, with text explaining the app.
+    Required: Actionbar Icon; method to show Icon; method to handle events for Icon, in this case showing a Diolog Fragment with text.
   (2) Click on the Creat New Account button if she has no account yet or wants to make another one. She will be forwarded to Create_New_Account_Activity (see below).
-    Required: Button with text "Create New Account"; onClick function for if user clicks it?; intent to go to Create_New_Account_Activity
-  (3) Log in, via Firebase. She can log in via a username and password. If successful, she will be forwarded to Main_Activity. If not, she will be notified why not.
-    Required: connection to Firebase; possibility to enter password; possibility to enter username; button to Login with text "Login";       onClick for button; check for if successful; if successful intent to go to Main_Activity; if unsuccessful show text in relevant box.
+    Required: Button with text "Create New Account"; onClick function for if user clicks with intent to go to Create_New_Account_Activity.
+  (3) Log in, via Firebase. She can log in via e-mail and password. If successful, she will be forwarded to Main_Activity. If not, she will be notified why not.
+    Required: box for user to enter e-mail; box to enter password; method to retrieve e-mail and password; method for signing in and if successful forward to Main_Activity, if unsuccessful notify user.
 (iii) Also required:
-  (a) Check if the user is logged in via Firebase as soon as she reaches this Activity. If not, nothing happens (meaning she remains here). If she is, she will be redirected to Main_Activity. (or to the Activity she was when she Logged out?)
-    Required: connection to Firebase.
+  (a) Check if the user is logged in via Firebase as soon as she reaches this Activity. If not, nothing happens (meaning she remains here). If she is, she will be redirected to Main_Activity.
+    Required: check auth state in onCreate; if statement in onStarte to forward user to Main_Activity if logged in.
   (b) Nice background
-    Required:
   (c) Nice picture which is somehow relevant to both calculating expected utility & Charities.
-    Required:
   (d) Title of app
-    Required:
   (e) Very brief description of app directly below title.
-    Required:
   
 ## Create_New_Account_Activity
 (i) The user can reach this Activity via:
   (a) Login_Activity: by clicking the button "Create New Account."
+    Required: nothing in particular, see Login_Activity.
   (b) Main_Activity: by clicking the backpressbutton if the user had created an account and then went to Main_Activity.
+    Required: nothing in particular (but, the user will be immediately directed back, so perhaps this should be overridden in Main @@@).
 (ii) The user can:
-  (1) Enter a username suitable for Firebase.
-    Required:
+  (1) Enter an e-mail suitable for Firebase.
+    Required: TextView; method for getting access to what is  
   (2) Enter a password suitable for Firebase.
-    Required:
+    Required: TextView; 
   (3) Enter that same password again
-    Required:
+    Required: TextView;
   (4) Click on a button to create a New Account. If successful, she will be forwarded to Main_Activity. If unsuccessful, show reason,
-    Required:
+    Required: onClick to get info: this is the method for getting the e-mail & passwords.
 (iii) Also required:
   (a) Check to see if the user is logged in via Firebase as soon as she reaches this Activity. If not, she will be redirected to Login_Activity. If she is, nothing happens (so that she can stay on this page).
-    Required: Conntection to Firebase (java); 
+    Required: check auth state in onCreate (also to create new user); if statement in onStart to forward user to Main_Activity if logged in.
   (b) Nice background
-    Required:
   (c) Title of page "Create new account"
-    Required:
   (d) Brief description about what the user can/should do here (enter username and password to create new account...)
     Required:
     
