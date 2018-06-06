@@ -8,8 +8,8 @@ About the format of the description: (i), (ii), (iii), link to picure.
 
 ## Login_Activity
 (i) The user can reach this via:\
-  (a) Starting the app. This is the first Activity.
-    Required: Specify in manifest that it is the launcher Activity.
+&nbsp;&nbsp;(a) Starting the app. This is the first Activity.\
+&nbsp;&nbsp;&nbsp;&nbsp;Required: Specify in manifest that it is the launcher Activity.\
   (b) By logging out from Firebase via Main_Activity; Calculate_Activity; Add_Saved_Charity_Activity; Save_New_Charity_Activity (so, all other activities with the exeption of Create_New_Account_Activity).
     Required: nothing in particular (see other activities).
   (c) By pressing backpressbutton via Main_Activity. But, this should be overrided: the user should then leave the app?).
