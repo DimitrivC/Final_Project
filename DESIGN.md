@@ -83,17 +83,19 @@ About the format of the description: (i), (ii), (iii), link to picure.
       The table has X rows and three columns. The three columns are:
       (4) Outcome (left): (Above the top most table directly above this column is a text such as: "The charity achieves what it aims to do: "). The boxes from this column have texts like "Completely", "Almost", "Slightly", "Not at all." This content cannot be changed. The number of outcomes determines the number of rows.
         Required:
-      (5) Probability (middle):(Above the top most table directly above this column is a text such as: "The probability that this outcome will come about is: "). The user has to insert an integer in each of the boxes, which represents the probability that the user assigns to an outcome (such as that the charitiy achieves what it aims to do completely) coming about. The total has to be 100. Sophisticated way of doing this @@@@. Each table has a box which says how many percent should still be devided amongst the options, or how much the user has exceeded the 100 (Ideally, the box should say 0). Each table also has a button with the text "No clue!" If the user clicks on this, all outcomes will be assigned equal probabilities (if the user has already filled in probabilities, she will be asked if she's sure before the probabilities are changed).
+      (5) Probability (middle):(Above the top most table directly above this column is a text such as: "The probability that this outcome will come about is: "). The user has to insert an integer in each of the boxes, which represents the probability that the user assigns to an outcome (such as that the charitiy achieves what it aims to do completely) coming about. The total has to be 100. Sophisticated way of doing this @@@@. Each table has a box which says how many percent should still be devided amongst the options, or how much the user has exceeded the 100 (Ideally, the box should say 0). (see also (7) below).
         Required:
       (6) Value (right): (Above the top most table directly above this column is a text such as: "The numerical value assigned to this outcome is: "). The user has to insert an integer. If she tries to do otherwise, she will be notified.
-        Required:  
-  (7) Clik a button with the text "Save new charity."
+        Required:
+  (7) Each table has a button with the text "No clue!" If the user doesn't know what probabilities she should assign to the outcomes, she can opt to rely on the judgements of other users. Users can share the probabilities they assign to outcomes of particular charities via Firebase (see below, Save_New_Charity_Activity), and these can be combined and then used by other users.
     Required:
-  (8) Click a button with the text "Add saved charity."
+  (8) Clik a button with the text "Save new charity."
     Required:
-  (9) Click a button with the text "Show saved charity."
+  (9) Click a button with the text "Add saved charity."
     Required:
-  (10) Click a button with the text "Calculate!" If she hasn't done what was required, she will be notified. Specifically: @@
+  (10) Click a button with the text "Show saved charity."
+    Required:
+  (11) Click a button with the text "Calculate!" If she hasn't done what was required, she will be notified. Specifically: @@
     Required:
 (iii) Also required:
   (a) Check to see if the user is logged in via Firebase as soon as the user reaches this Activity. If not, she will be redirected to Login_Activity. If she is, nothing happens (so she remains on this page).
