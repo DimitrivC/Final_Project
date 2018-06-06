@@ -79,7 +79,7 @@ About the format of the description: (i), (ii), (iii), link to picure.
       Required: add to the listview from (3) above all the charities from (3.1) a static option, with the text "Name a charity."
     If the user (3.1) selects a charity or (3.2) names a charity, we will see a table, with above it the name of the charity which has been selected, or if she has clicked "Name a charity" a box into which she can fill in the name of a charity herself. She cannot fill in the name of a charity she has already selected (for this particular calculation), and cannot fill in the name of a charity she already named. (The user also cannot select a charity with the same name as a charity she named herself). If she tries to do this, she will be notified. Both the selecting and naming can be done several times, but it seems useful to have a limit. (If there are more tables than can fit on the screen the user can scroll through them, but e.g. the buttons remain where they are).
       Required: method to make table if a charity is clicked in the listview; method to make a table if "Name a charity" with  
-      is clicked (or put this in the same method with an if statement or something). For the specific requirements of the table, relevant for these methods, see (4)-(8). The methods to create tables also have to implement the stuff mentioned in (4)-(8).
+      is clicked (or put this in the same method with an if statement or something). For the specific requirements of the table, relevant for these methods, see (4)-(8). The methods to create tables also have to implement some of the stuff mentioned in (4)-(8).
       The table has X rows and three columns. The three columns are:
       (4) Outcome (left): (Above the top most table directly above this column is a text such as: "The charity achieves what it aims to do: "). The boxes from this column have texts like "Completely", "Almost", "Slightly", "Not at all." This content cannot be changed. The number of outcomes determines the number of rows.
         Required: @@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -92,20 +92,18 @@ About the format of the description: (i), (ii), (iii), link to picure.
   (8) Each table has a button with the text "Remove" which deletes the charity from the calculation. All content will be lost. The user will be asked if she's sure before it actually happens.
     Required: @@@@
   (8) Clik a button with the text "Save new charity." The user will be directed to Save_New_Charity_Activity (see below).
-    Required:
+    Required: @@@@@
   (9) Click a button with the text "Add saved charity." The user will be directed to Add_Saved_Charity_Activity (see below).
-    Required:
+    Required: @@@@@
   (10) Click a button with the text "Show shared charities." The user is shown a list of all other charities, along with the calculations, shared by other users. (the user can save and share one herself via Save_New_Charity). They are sorted as follows: if a user has selected charities already, these are on top. Otherwise they're ordered alphabetically.
-    Required:
-  (11) Click a button with the text "Calculate!" All probabilities have to be properly assigned, and all outcomes have to have numerical values attatched to them. If something isn't done, the user will be notified what specifically is wrong. If all is well, she will be directed to Calculate_Activity. But, first the expected utility of all charities will be calculated, and the conclusions are given to an intent to go to Calculate_Activity.
-    Required:
+    Required: @@@@@@
+  (11) Click a button with the text "Calculate!" as soon as there are two charities. All probabilities have to be properly assigned, and all outcomes have to have numerical values attatched to them. If something isn't done, the user will be notified what specifically is wrong. If all is well, she will be directed to Calculate_Activity. But, first the expected utility of all charities will be calculated, and the conclusions are given to an intent to go to Calculate_Activity.
+    Required: @@@@@@
 (iii) Also required:
   (a) Check to see if the user is logged in via Firebase as soon as the user reaches this Activity. If not, she will be redirected to Login_Activity. If she is, nothing happens (so she remains on this page).
-    Required:
+    Required: @@@@@@
   (b) Nice Background
-    Required:
   (c) Title of page
-    Required:
   (d) Save instance state
   
 ## Calculate_Activity
