@@ -7,7 +7,7 @@ Picture
 About the format of the description: (i), (ii), (iii), link to picure.
 
 ## Login_Activity
-(i) The user can reach this via:
+(i) The user can reach this via:\
   (a) Starting the app. This is the first Activity.
     Required: Specify in manifest that it is the launcher Activity.
   (b) By logging out from Firebase via Main_Activity; Calculate_Activity; Add_Saved_Charity_Activity; Save_New_Charity_Activity (so, all other activities with the exeption of Create_New_Account_Activity).
@@ -151,9 +151,9 @@ About the format of the description: (i), (ii), (iii), link to picure.
   (3) Click on a button with the text "Add to calculation." The user will be directed to Main_Activity, and there the selected charities will are added to the calculation.
     Required: method to detect which charities have been selected (see @@@@@).
   (4) Click on a button with the text "Log out" to log out. The user is redirected to Login_Activity.
-    Required: @@@@
+    Required: button; onClick to log out from Firebase & intent to go to Login_Activity.
   (5) Click on an Icon showing what the user can do on this page.
-    Required:
+    Required: Actionbar Icon; method for showing icon; method for handling events of Icon, showing if clicked a Dialog Fragment with text.
 (iii) Also required:
   (a) Check to see if the user is logged in via Firebase. If not, she will be redirected to Login_Activity. If so, nothing happens (so she remains on this page).
   (b) Nice background
