@@ -87,15 +87,17 @@ About the format of the description: (i), (ii), (iii), link to picure.
         Required:
       (6) Value (right): (Above the top most table directly above this column is a text such as: "The numerical value assigned to this outcome is: "). The user has to insert an integer. If she tries to do otherwise, she will be notified.
         Required:
-  (7) Each table has a button with the text "No clue!" If the user doesn't know what probabilities she should assign to the outcomes, she can opt to rely on the judgements of other users. Users can share the probabilities they assign to outcomes of particular charities via Firebase (see below, Save_New_Charity_Activity), and these can be combined and then used by other users.
+  (7) Each table has a button with the text "No clue!" If the user doesn't know what probabilities she should assign to the outcomes, she can opt to rely on the judgements of other users. Users can share the probabilities they assign to outcomes of particular charities via Firebase (see below, Save_New_Charity_Activity), and these can be combined and then used by other users. But, if the charity is named by the user, there is no data from other users, so the probabilities will be assigned equally to all outcomes.
     Required:
-  (8) Clik a button with the text "Save new charity."
+  (8) Each table has a button with the text "Remove" which deletes the charity from the calculation. All content will be lost. The user will be asked if she's sure before it actually happens.
     Required:
-  (9) Click a button with the text "Add saved charity."
+  (8) Clik a button with the text "Save new charity." The user will be directed to Save_New_Charity_Activity (see below).
     Required:
-  (10) Click a button with the text "Show saved charity."
+  (9) Click a button with the text "Add saved charity." The user will be directed to Add_Saved_Charity_Activity (see below).
     Required:
-  (11) Click a button with the text "Calculate!" If she hasn't done what was required, she will be notified. Specifically: @@
+  (10) Click a button with the text "Show share charity." The user is shown a list of all other charities, along with the calculations, shared by other users. (the user can save and share one herself via Save_New_Charity). They are sorted as follows: if a user has @@@@@@@@@@@@
+    Required:
+  (11) Click a button with the text "Calculate!" All probabilities have to be properly assigned, and all outcomes have to have numerical values attatched to them. If something isn't done, the user will be notified what specifically is wrong. If all is well, she will be directed to Calculate_Activity. But, first the expected utility of all charities will be calculated, and the conclusions are given to an intent to go to Calculate_Activity.
     Required:
 (iii) Also required:
   (a) Check to see if the user is logged in via Firebase as soon as the user reaches this Activity. If not, she will be redirected to Login_Activity. If she is, nothing happens (so she remains on this page).
@@ -114,13 +116,18 @@ About the format of the description: (i), (ii), (iii), link to picure.
       Required: data from the intent from Main_Activity is taken and put in special table; table.
   (2) See what charity has the highest expected utility in a separate field.
       Required: box for that content; data has to be taken from intent from Main_Activity.
-  (3) If the charitiy with the highest expected utility was selected rather than inserted, there is a button she can click to direct herself to the website of the charity.
+  (3) If the charitiy with the highest expected utility was selected rather than inserted:
+    (3.1) There is a button she can click to direct herself to the website of the charity.
       Required: button with text "Go to the website of "insert charity name here""(xml); onClick function added to button (xml); onClick  function for button (java) containing: method for going to website of charity; finishig this activity? No, don't think so.
-  (4) Click on a button with the text "Share calculations" to share the calculation & results with other users.
+    (3.2) Click on a button with the text "Share calculations" to share the calculation & results with other users.
+      Required:
+  (4) If the charity was named rather than selected, there is no button to share or to go to the website, but just the name of the charity.
+  (5) If several charities have the highest expected utility, all are shown. If they were selected, they can be forwarded to the website, and the expected utility can also be shared. Also, there's a button with the text "Recalculate." If the user clicks this, she will be directed to Main_Activity, and only the charities with previously the hihgest expected utility were shown, now with empty tables.
+  (6) Click on a button with the text "Show other calculations" to see calculations shared by others via Firebase.
     Required:
-  (5) Click on a button with the text "Show other calculations" to see calculations shared by others via Firebase.
+  (7) Click on a button with the text "Do another calculation" to go back to Main_Activity to start again.
     Required:
-  (5) Click on button with text "Log out" to log out.
+  (8) Click on button with text "Log out" to log out.
     Required: button with text "Log out" (xml); onClick for that button (xml); onClick for that button (java) containing: function to log out from Firebase & redirect to Login_Activity via intent.
 (iii) Also required:
   (a) Check if the user is logged in via Firebase. If not, she will be directed to Login_Activity. If she is, nothing happens (so she remains on the page).
@@ -139,11 +146,15 @@ About the format of the description: (i), (ii), (iii), link to picure.
 (ii) The user can:
   (1) See a list of all saved charities (which have been saved via Save_New_Charity_Activity, see below)
     Required:
-  (2) Select one or more charities.
+  (2) Click on one ore more charities, thereby selecting them. This will be shown. If she clicks on them again, they will be unselected.
     Required:
-  (3) Click on a button to go back to Main_Activity so the selected charities are added to the list. 
+  (3) Click on one or more charities in another place, to show the table. If she clicks on that particular place again, the table will not be shown any more.
     Required:
-  (4) Log out.
+  (3) Click on a button with the text "Add to calculation." The user will be directed to Main_Activity, and there the selected charities will are added to the calculation.
+    Required:
+  (4) Click on a button with the text "Log out" to log out. The user is redirected to Login_Activity.
+    Required:
+  (5) Click on an Icon showing what the user can do on this page.
     Required:
 (iii) Also required:
   (a) Check to see if the user is logged in via Firebase. If not, she will be redirected to Login_Activity. If so, nothing happens (so she remains on this page).
@@ -156,16 +167,12 @@ About the format of the description: (i), (ii), (iii), link to picure.
   (a) Main_Activity: if the user clicked on the "Save new Charity" button.
     Required: Nothing in particular, see Main_Activity.
 (ii) The user can:
-(1) Select a charity
-  Required:
-(2) Insert a charity
-  Reequired:
-(3) If she has done (2) or (3), she can, for that particular charity
-  Required
-(4) Edit charities saved earlier.
-  Required:
-(5) Log out.
-  Required:
+  (1) Click on a button with the text "Save new charity." She can select or name a charity in the same manner as via Main_Activity (3). The probabilities and values have to be assigned, and the only significant difference is that there is no button with the text "No clue!" Also, it's not possible to give charities the same name as charities assigned earlier. 
+    Required:
+  (2) Click on a button with the text "Edit" to edit charities she saved earlier. She will see a list of all saved charities. The user can click on one, and she'll see the table. By clicking on the probabilities or values these can be changed.
+    Required;
+  (3) Click on a button with the text "Log out" to log out. The user will be directed to Login_Activity.
+    Required:
 (iii) Also required:
   (a) Check to see if the user is logged in via Firebase. If not, she wil be redirected to Login_Activty. If she's logged in, nothing happens (so she can stay on this page).
   (b) Nice background
