@@ -119,25 +119,22 @@ About the format of the description: (i), (ii), (iii), link to picure.
     (3.1) There is a button she can click to direct herself to the website of the charity.
       Required: method to determine if charity is selected or not; if it is: show button with text "Go to the website of "insert charity name here""; onClick function for button containing to website of charity.
     (3.2) Click on a button with the text "Share calculations" to share the calculation & results with other users.
-      Required: @@@@@@
+      Required: method to share all calculations (charities, results) via Firebase with other users. @@@
   (4) If the charity was named rather than selected, there is no button to share or to go to the website, but just the name of the charity.
     Required: method to determine if the charity is named or selected (same as with (3)) & if named show a box with the text of 
   (5) If several charities have the highest expected utility, all are shown. If they were selected, they can be forwarded to the website, and the expected utility can also be shared. Also, there's a button with the text "Recalculate." If the user clicks this, she will be directed to Main_Activity, and only the charities with previously the hihgest expected utility were shown, now with empty tables.
   (6) Click on a button with the text "Show other calculations" to see calculations shared by others via Firebase.
-    Required: @@@@@@@
+    Required: button; onClick to show all calculations shared by other users (via (3.2)).
   (7) Click on a button with the text "Do another calculation" to go back to Main_Activity to start again.
-    Required: @@@@@@@
+    Required: button; onClick with intent to go to Main_Activity.
   (8) Click on button with text "Log out" to log out.
-    Required: button with text "Log out" (xml); onClick for that button (xml); onClick for that button (java) containing: function to log out from Firebase & redirect to Login_Activity via intent.
+    Required: button; onClick containing: function to log out from Firebase & redirect to Login_Activity via intent.
 (iii) Also required:
   (a) Check if the user is logged in via Firebase. If not, she will be directed to Login_Activity. If she is, nothing happens (so she remains on the page).
-    Required: Firebase access;
+    Required: check auth state in onCreate; if statement in onStart to direct user to Login_Activity if not logged in.
   (b) Nice background
-    Required:
   (c) Title of page
-    Required:
   (d) Brief text about what this page is for; or Information Icon.
-    Required:
   (e) Save instance state
 
 ## Add_Saved_Charity_Activity
@@ -146,15 +143,15 @@ About the format of the description: (i), (ii), (iii), link to picure.
     Required: nothin in particular (see Main_Activity).
 (ii) The user can:
   (1) See a list of all saved charities (which have been saved via Save_New_Charity_Activity, see below)
-    Required:
+    Required: listview linked to Firebase showing names of all charities saved by user, via Save_New_Charity_Activity.
   (2) Click on one ore more charities, thereby selecting them. This will be shown. If she clicks on them again, they will be unselected.
-    Required:
+    Required: eventhandler for listview: if clicked, saves this & shows this to user. If clicked again unsaves them & also shows this to user.
   (3) Click on one or more charities in another place, to show the table. If she clicks on that particular place again, the table will not be shown any more.
-    Required:
+    Required: another eventhandler for listview: if clicked show table: outcomes & probabilities & values assigned, retrieve via Firebase. If clicked again stop showing table.
   (3) Click on a button with the text "Add to calculation." The user will be directed to Main_Activity, and there the selected charities will are added to the calculation.
-    Required:
+    Required: method to detect which charities have been selected (see @@@@@).
   (4) Click on a button with the text "Log out" to log out. The user is redirected to Login_Activity.
-    Required:
+    Required: @@@@
   (5) Click on an Icon showing what the user can do on this page.
     Required:
 (iii) Also required:
