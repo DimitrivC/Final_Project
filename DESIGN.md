@@ -95,7 +95,7 @@ About the format of the description: (i), (ii), (iii), link to picure.
     Required:
   (9) Click a button with the text "Add saved charity." The user will be directed to Add_Saved_Charity_Activity (see below).
     Required:
-  (10) Click a button with the text "Show share charity." The user is shown a list of all other charities, along with the calculations, shared by other users. (the user can save and share one herself via Save_New_Charity). They are sorted as follows: if a user has @@@@@@@@@@@@
+  (10) Click a button with the text "Show shared charities." The user is shown a list of all other charities, along with the calculations, shared by other users. (the user can save and share one herself via Save_New_Charity). They are sorted as follows: if a user has selected charities already, these are on top. Otherwise they're ordered alphabetically.
     Required:
   (11) Click a button with the text "Calculate!" All probabilities have to be properly assigned, and all outcomes have to have numerical values attatched to them. If something isn't done, the user will be notified what specifically is wrong. If all is well, she will be directed to Calculate_Activity. But, first the expected utility of all charities will be calculated, and the conclusions are given to an intent to go to Calculate_Activity.
     Required:
