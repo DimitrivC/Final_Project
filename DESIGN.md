@@ -177,4 +177,11 @@ About the format of the description: (i), (ii), (iii), link to picure.
 &nbsp;&nbsp;&nbsp;&nbsp;(c) Title of page\
 &nbsp;&nbsp;&nbsp;&nbsp;(d) Text showing what this page does; or information Icon.\
 &nbsp;&nbsp;&nbsp;&nbsp;(e) Save instance state
+
+## APIs
+http://developer.everydayhero.com/charities/
+(If I can discover other APIs similar enough, it would be nice if I could try to combine the data from several APIs).
+
+## Datasources
+Firebase
  
