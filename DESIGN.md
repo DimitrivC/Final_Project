@@ -1,10 +1,8 @@
-Title
+Calculating the Expected Utility of Charities
 
-Briefly about the content of the app.
 
-Picture
+![alt text]()
 
-About the format of the description: (i), (ii), (iii), link to picure.
 
 ## Login_Activity
 (i) The user can reach this via:\
