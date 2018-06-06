@@ -98,10 +98,10 @@ About the format of the description: (i), (ii), (iii), link to picure.
   (10) Click a button with the text "Show shared charities." The user is shown a list of all other charities, along with the calculations, shared by other users. (the user can save and share one herself via Save_New_Charity). They are sorted as follows: if a user has selected charities already, these are on top. Otherwise they're ordered alphabetically.
     Required: method to get to Firebase @@@@@@@@@.
   (11) Click a button with the text "Calculate!" as soon as there are two charities. All probabilities have to be properly assigned, and all outcomes have to have numerical values attatched to them. If something isn't done, the user will be notified what specifically is wrong. If all is well, she will be directed to Calculate_Activity. But, first the expected utility of all charities will be calculated, and the conclusions are given to an intent to go to Calculate_Activity.
-    Required: method to check if there are two tables (see also method for creating tables, which also has to keep track of the number of tables) & to show button; method for button (or via the same method) with onClick to go to Calculate_Activity ; method to store all tables and content so that they can be retrieved if the user returns (see also (8) & (9))
+    Required: method to check if there are two or more tables (see also method for creating tables, which also has to keep track of the number of tables) & to show button if this is the case; method for button (or via the same method) with onClick to go to Calculate_Activity & to calculate for each table/charity the expected utility by using the assigned probabilities and numerical values & to put these conclusions in the intent for going to Calculate_Activity; method to store all tables and content so that they can be retrieved if the user returns (see also (8) & (9)).
 (iii) Also required:
   (a) Check to see if the user is logged in via Firebase as soon as the user reaches this Activity. If not, she will be redirected to Login_Activity. If she is, nothing happens (so she remains on this page).
-    Required: @@@@@@
+    Required: check auth state in onCreate; if statement in onStart to direct user to Login_Activity if not logged in.
   (b) Nice Background
   (c) Title of page
   (d) Save instance state
@@ -109,23 +109,24 @@ About the format of the description: (i), (ii), (iii), link to picure.
 ## Calculate_Activity
 (i) The user can reach this via:
   (a) Main_Activity: if the user pressed the button with the text "Calculate!" from Main_Activity, and some requirements were met, she's directed to this Activity.
-  Required: the data with the calculations is retrieved from the intent created in Main_Acitivty in the onClick from the button with the text "Calculate!" from Main_Activity.
+  Required: method which gets intent (created in Main_Activity, the onClick for calculate button) & gets data from intent (calculations of expected utility) & shows this in a table & determines which expected utility is greatest and shows this in a special place.
 (ii) The user can:
   (1) See what the expected utility of each charity is.
-      Required: data from the intent from Main_Activity is taken and put in special table; table.
+      Required: see method above.
   (2) See what charity has the highest expected utility in a separate field.
-      Required: box for that content; data has to be taken from intent from Main_Activity.
+      Required: see method above.
   (3) If the charitiy with the highest expected utility was selected rather than inserted:
     (3.1) There is a button she can click to direct herself to the website of the charity.
-      Required: button with text "Go to the website of "insert charity name here""(xml); onClick function added to button (xml); onClick  function for button (java) containing: method for going to website of charity; finishig this activity? No, don't think so.
+      Required: method to determine if charity is selected or not; if it is: show button with text "Go to the website of "insert charity name here""; onClick function for button containing to website of charity.
     (3.2) Click on a button with the text "Share calculations" to share the calculation & results with other users.
-      Required:
+      Required: @@@@@@
   (4) If the charity was named rather than selected, there is no button to share or to go to the website, but just the name of the charity.
+    Required: method to determine if the charity is named or selected (same as with (3)) & if named show a box with the text of 
   (5) If several charities have the highest expected utility, all are shown. If they were selected, they can be forwarded to the website, and the expected utility can also be shared. Also, there's a button with the text "Recalculate." If the user clicks this, she will be directed to Main_Activity, and only the charities with previously the hihgest expected utility were shown, now with empty tables.
   (6) Click on a button with the text "Show other calculations" to see calculations shared by others via Firebase.
-    Required:
+    Required: @@@@@@@
   (7) Click on a button with the text "Do another calculation" to go back to Main_Activity to start again.
-    Required:
+    Required: @@@@@@@
   (8) Click on button with text "Log out" to log out.
     Required: button with text "Log out" (xml); onClick for that button (xml); onClick for that button (java) containing: function to log out from Firebase & redirect to Login_Activity via intent.
 (iii) Also required:
