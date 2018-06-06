@@ -89,92 +89,92 @@ About the format of the description: (i), (ii), (iii), link to picure.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: method to get data from Firebase.\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(8) Each table has a button with the text "Remove" which deletes the charity from the calculation. All content will be lost. The user will be asked if she's sure before it actually happens.\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: button; onClick to delete specific table and it's content.\
-(8) Clik a button with the text "Save new charity." The user will be directed to Save_New_Charity_Activity (see below).\
-    Required: button; onClick with intent to go to Save_New_Charity; method to save all tables and content, if there're any (same as (9)).\
-  (9) Click a button with the text "Add saved charity." The user will be directed to Add_Saved_Charity_Activity (see below).\
-    Required: button; onClick with intent to go to Add_Saved_Charity; method to save all tables and content, if there're any (same as (8) & (11)).\
-  (10) Click a button with the text "Show shared charities." The user is shown a list of all other charities, along with the calculations, shared by other users. (the user can save and share one herself via Save_New_Charity). They are sorted as follows: if a user has selected charities already, these are on top. Otherwise they're ordered alphabetically.\
-    Required: method to get data from Firebase & show in proper way.\
-  (11) Click a button with the text "Calculate!" as soon as there are two charities. All probabilities have to be properly assigned, and all outcomes have to have numerical values attatched to them. If something isn't done, the user will be notified what specifically is wrong. If all is well, she will be directed to Calculate_Activity. But, first the expected utility of all charities will be calculated, and the conclusions are given to an intent to go to Calculate_Activity.\
-    Required: method to check if there are two or more tables (see also method for creating tables, which also has to keep track of the number of tables) & to show button if this is the case; method for button (or via the same method) with onClick to go to Calculate_Activity & to calculate for each table/charity the expected utility by using the assigned probabilities and numerical values & to put these conclusions in the intent for going to Calculate_Activity; method to store all tables and content so that they can be retrieved if the user returns (see also (8) & (9)).\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(8) Clik a button with the text "Save new charity." The user will be directed to Save_New_Charity_Activity (see below).\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: button; onClick with intent to go to Save_New_Charity; method to save all tables and content, if there're any (same as (9)).\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(9) Click a button with the text "Add saved charity." The user will be directed to Add_Saved_Charity_Activity (see below).\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: button; onClick with intent to go to Add_Saved_Charity; method to save all tables and content, if there're any (same as (8) & (11)).\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(10) Click a button with the text "Show shared charities." The user is shown a list of all other charities, along with the calculations, shared by other users. (the user can save and share one herself via Save_New_Charity). They are sorted as follows: if a user has selected charities already, these are on top. Otherwise they're ordered alphabetically.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: method to get data from Firebase & show in proper way.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(11) Click a button with the text "Calculate!" as soon as there are two charities. All probabilities have to be properly assigned, and all outcomes have to have numerical values attatched to them. If something isn't done, the user will be notified what specifically is wrong. If all is well, she will be directed to Calculate_Activity. But, first the expected utility of all charities will be calculated, and the conclusions are given to an intent to go to Calculate_Activity.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: method to check if there are two or more tables (see also method for creating tables, which also has to keep track of the number of tables) & to show button if this is the case; method for button (or via the same method) with onClick to go to Calculate_Activity & to calculate for each table/charity the expected utility by using the assigned probabilities and numerical values & to put these conclusions in the intent for going to Calculate_Activity; method to store all tables and content so that they can be retrieved if the user returns (see also (8) & (9)).\
 (iii) Also required:\
-  (a) Check to see if the user is logged in via Firebase as soon as the user reaches this Activity. If not, she will be redirected to Login_Activity. If she is, nothing happens (so she remains on this page).\
-    Required: check auth state in onCreate; if statement in onStart to direct user to Login_Activity if not logged in.\
-  (b) Nice Background\
-  (c) Title of page\
-  (d) Save instance state
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(a) Check to see if the user is logged in via Firebase as soon as the user reaches this Activity. If not, she will be redirected to Login_Activity. If she is, nothing happens (so she remains on this page).\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: check auth state in onCreate; if statement in onStart to direct user to Login_Activity if not logged in.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(b) Nice Background\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(c) Title of page\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(d) Save instance state
   
 ## Calculate_Activity
 (i) The user can reach this via:\
-  (a) Main_Activity: if the user pressed the button with the text "Calculate!" from Main_Activity, and some requirements were met, she's directed to this Activity.\
-  Required: method which gets intent (created in Main_Activity, the onClick for calculate button) & gets data from intent (calculations of expected utility) & shows this in a table & determines which expected utility is greatest and shows this in a special place.\
+&nbsp;&nbsp;&nbsp;&nbsp;(a) Main_Activity: if the user pressed the button with the text "Calculate!" from Main_Activity, and some requirements were met, she's directed to this Activity.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: method which gets intent (created in Main_Activity, the onClick for calculate button) & gets data from intent (calculations of expected utility) & shows this in a table & determines which expected utility is greatest and shows this in a special place.\
 (ii) The user can:\
-  (1) See what the expected utility of each charity is.\
-      Required: see method above.\
-  (2) See what charity has the highest expected utility in a separate field.\
-      Required: see method above.\
-  (3) If the charitiy with the highest expected utility was selected rather than inserted:\
-    (3.1) There is a button she can click to direct herself to the website of the charity.\
-      Required: method to determine if charity is selected or not; if it is: show button with text "Go to the website of "insert charity name here""; onClick function for button containing to website of charity.\
-    (3.2) Click on a button with the text "Share calculations" to share the calculation & results with other users.\
-      Required: method to share all calculations (charities, results) via Firebase with other users.\
-  (4) If the charity was named rather than selected, there is no button to share or to go to the website, but just the name of the charity.\
-    Required: method to determine if the charity is named or selected (same as with (3)) & if named show a box with the text of the name.
-  (5) If several charities have the highest expected utility, all are shown. If they were selected, they can be forwarded to the website, and the expected utility can also be shared. Also, there's a button with the text "Recalculate." If the user clicks this, she will be directed to Main_Activity, and only the charities with previously the hihgest expected utility were shown, now with empty tables.\
-  (6) Click on a button with the text "Show other calculations" to see calculations shared by others via Firebase.\
-    Required: button; onClick to show all calculations shared by other users (via (3.2)).\
-  (7) Click on a button with the text "Do another calculation" to go back to Main_Activity to start again.\
-    Required: button; onClick with intent to go to Main_Activity.\
-  (8) Click on button with text "Log out" to log out.\
-    Required: button; onClick containing: function to log out from Firebase & redirect to Login_Activity via intent.\
+&nbsp;&nbsp;&nbsp;&nbsp;(1) See what the expected utility of each charity is.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: see method above.\
+&nbsp;&nbsp;&nbsp;&nbsp;(2) See what charity has the highest expected utility in a separate field.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: see method above.\
+&nbsp;&nbsp;&nbsp;&nbsp;(3) If the charitiy with the highest expected utility was selected rather than inserted:\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3.1) There is a button she can click to direct herself to the website of the charity.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: method to determine if charity is selected or not; if it is: show button with text "Go to the website of "insert charity name here""; onClick function for button containing to website of charity.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3.2) Click on a button with the text "Share calculations" to share the calculation & results with other users.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: method to share all calculations (charities, results) via Firebase with other users.\
+&nbsp;&nbsp;&nbsp;&nbsp;(4) If the charity was named rather than selected, there is no button to share or to go to the website, but just the name of the charity.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: method to determine if the charity is named or selected (same as with (3)) & if named show a box with the text of the name.
+&nbsp;&nbsp;&nbsp;&nbsp;(5) If several charities have the highest expected utility, all are shown. If they were selected, they can be forwarded to the website, and the expected utility can also be shared. Also, there's a button with the text "Recalculate." If the user clicks this, she will be directed to Main_Activity, and only the charities with previously the hihgest expected utility were shown, now with empty tables.\
+&nbsp;&nbsp;&nbsp;&nbsp;(6) Click on a button with the text "Show other calculations" to see calculations shared by others via Firebase.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: button; onClick to show all calculations shared by other users (via (3.2)).\
+&nbsp;&nbsp;&nbsp;&nbsp;(7) Click on a button with the text "Do another calculation" to go back to Main_Activity to start again.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: button; onClick with intent to go to Main_Activity.\
+&nbsp;&nbsp;&nbsp;&nbsp;(8) Click on button with text "Log out" to log out.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: button; onClick containing: function to log out from Firebase & redirect to Login_Activity via intent.\
 (iii) Also required:\
-  (a) Check if the user is logged in via Firebase. If not, she will be directed to Login_Activity. If she is, nothing happens (so she remains on the page).\
-    Required: check auth state in onCreate; if statement in onStart to direct user to Login_Activity if not logged in.\
-  (b) Nice background\
-  (c) Title of page\
-  (d) Brief text about what this page is for; or Information Icon.\
-  (e) Save instance state
+&nbsp;&nbsp;&nbsp;&nbsp;(a) Check if the user is logged in via Firebase. If not, she will be directed to Login_Activity. If she is, nothing happens (so she remains on the page).\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: check auth state in onCreate; if statement in onStart to direct user to Login_Activity if not logged in.\
+&nbsp;&nbsp;&nbsp;&nbsp;(b) Nice background\
+&nbsp;&nbsp;&nbsp;&nbsp;(c) Title of page\
+&nbsp;&nbsp;&nbsp;&nbsp;(d) Brief text about what this page is for; or Information Icon.\
+&nbsp;&nbsp;&nbsp;&nbsp;(e) Save instance state
 
 ## Add_Saved_Charity_Activity
 (i) The user can reach this via:\
-  (a) Main_Acitivty: if the user clicked on the "Add saved charity" button.\
-    Required: nothin in particular (see Main_Activity).\
+&nbsp;&nbsp;&nbsp;&nbsp;(a) Main_Acitivty: if the user clicked on the "Add saved charity" button.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: nothin in particular (see Main_Activity).\
 (ii) The user can:\
-  (1) See a list of all saved charities (which have been saved via Save_New_Charity_Activity, see below)\
-    Required: listview linked to Firebase showing names of all charities saved by user, via Save_New_Charity_Activity.\
-  (2) Click on one ore more charities, thereby selecting them. This will be shown. If she clicks on them again, they will be unselected.\
-    Required: eventhandler for listview: if clicked, saves this & shows this to user. If clicked again unsaves them & also shows this to user.\
-  (3) Click on one or more charities in another place, to show the table. If she clicks on that particular place again, the table will not be shown any more.\
-    Required: another eventhandler for listview: if clicked show table: outcomes & probabilities & values assigned, retrieve via Firebase. If clicked again stop showing table.\
-  (3) Click on a button with the text "Add to calculation." The user will be directed to Main_Activity, and there the selected charities will are added to the calculation.\
-    Required: method to detect which charities have been selected.\
-  (4) Click on a button with the text "Log out" to log out. The user is redirected to Login_Activity.\
-    Required: button; onClick to log out from Firebase & intent to go to Login_Activity.\
-  (5) Click on an Icon showing what the user can do on this page.\
-    Required: Actionbar Icon; method for showing icon; method for handling events of Icon, showing if clicked a Dialog Fragment with text.\
+&nbsp;&nbsp;&nbsp;&nbsp;(1) See a list of all saved charities (which have been saved via Save_New_Charity_Activity, see below)\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: listview linked to Firebase showing names of all charities saved by user, via Save_New_Charity_Activity.\
+&nbsp;&nbsp;&nbsp;&nbsp;(2) Click on one ore more charities, thereby selecting them. This will be shown. If she clicks on them again, they will be unselected.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: eventhandler for listview: if clicked, saves this & shows this to user. If clicked again unsaves them & also shows this to user.\
+&nbsp;&nbsp;&nbsp;&nbsp;(3) Click on one or more charities in another place, to show the table. If she clicks on that particular place again, the table will not be shown any more.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: another eventhandler for listview: if clicked show table: outcomes & probabilities & values assigned, retrieve via Firebase. If clicked again stop showing table.\
+&nbsp;&nbsp;&nbsp;&nbsp;(3) Click on a button with the text "Add to calculation." The user will be directed to Main_Activity, and there the selected charities will are added to the calculation.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: method to detect which charities have been selected.\
+&nbsp;&nbsp;&nbsp;&nbsp;(4) Click on a button with the text "Log out" to log out. The user is redirected to Login_Activity.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: button; onClick to log out from Firebase & intent to go to Login_Activity.\
+&nbsp;&nbsp;&nbsp;&nbsp;(5) Click on an Icon showing what the user can do on this page.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: Actionbar Icon; method for showing icon; method for handling events of Icon, showing if clicked a Dialog Fragment with text.\
 (iii) Also required:\
-  (a) Check to see if the user is logged in via Firebase. If not, she will be redirected to Login_Activity. If so, nothing happens (so she remains on this page).\
-  (b) Nice background\
-  (c) Title of page\
-  (d) Text showing what the page does; or Information icon.\
-  (e) Save instance state
+&nbsp;&nbsp;&nbsp;&nbsp;(a) Check to see if the user is logged in via Firebase. If not, she will be redirected to Login_Activity. If so, nothing happens (so she remains on this page).\
+&nbsp;&nbsp;&nbsp;&nbsp;(b) Nice background\
+&nbsp;&nbsp;&nbsp;&nbsp;(c) Title of page\
+&nbsp;&nbsp;&nbsp;&nbsp;(d) Text showing what the page does; or Information icon.\
+&nbsp;&nbsp;&nbsp;&nbsp;(e) Save instance state
   
   
 ## Save_New_Charity_Activity
 (i) The user can reach this via:\
-  (a) Main_Activity: if the user clicked on the "Save new Charity" button.\
-    Required: Nothing in particular, see Main_Activity.\
+&nbsp;&nbsp;&nbsp;&nbsp;(a) Main_Activity: if the user clicked on the "Save new Charity" button.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: Nothing in particular, see Main_Activity.\
 (ii) The user can:\
-  (1) Click on a button with the text "Save new charity." She can select or name a charity in the same manner as via Main_Activity (3). The probabilities and values have to be assigned, and the only significant difference is that there is no button with the text "No clue!" Also, it's not possible to give charities the same name as charities assigned earlier.\
-    Required: button; onClick, but see Main_Activity; same function pretty much, make so that same method can be accessed in different Activities.\
-  (2) Click on a button with the text "Edit" to edit charities she saved earlier. She will see a list of all saved charities. The user can click on one, and she'll see the table. By clicking on the probabilities or values these can be changed.\
-    Required: button; onClick so that all charities will be shown in listview & tables shown if clicked & such that values can be changed.\
-  (3) Click on a button with the text "Log out" to log out. The user will be directed to Login_Activity.\
-    Required: button; onClick to log out from Firebase & intent to go to Login_Activity.\
+&nbsp;&nbsp;&nbsp;&nbsp;(1) Click on a button with the text "Save new charity." She can select or name a charity in the same manner as via Main_Activity (3). The probabilities and values have to be assigned, and the only significant difference is that there is no button with the text "No clue!" Also, it's not possible to give charities the same name as charities assigned earlier.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: button; onClick, but see Main_Activity; same function pretty much, make so that same method can be accessed in different Activities.\
+&nbsp;&nbsp;&nbsp;&nbsp;(2) Click on a button with the text "Edit" to edit charities she saved earlier. She will see a list of all saved charities. The user can click on one, and she'll see the table. By clicking on the probabilities or values these can be changed.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: button; onClick so that all charities will be shown in listview & tables shown if clicked & such that values can be changed.\
+&nbsp;&nbsp;&nbsp;&nbsp;(3) Click on a button with the text "Log out" to log out. The user will be directed to Login_Activity.\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Required: button; onClick to log out from Firebase & intent to go to Login_Activity.\
 (iii) Also required:\
-  (a) Check to see if the user is logged in via Firebase. If not, she wil be redirected to Login_Activty. If she's logged in, nothing happens (so she can stay on this page).\
-  (b) Nice background\
-  (c) Title of page\
-  (d) Text showing what this page does; or information Icon.\
-  (e) Save instance state
-  
+&nbsp;&nbsp;&nbsp;&nbsp;(a) Check to see if the user is logged in via Firebase. If not, she wil be redirected to Login_Activty. If she's logged in, nothing happens (so she can stay on this page).\
+&nbsp;&nbsp;&nbsp;&nbsp;(b) Nice background\
+&nbsp;&nbsp;&nbsp;&nbsp;(c) Title of page\
+&nbsp;&nbsp;&nbsp;&nbsp;(d) Text showing what this page does; or information Icon.\
+&nbsp;&nbsp;&nbsp;&nbsp;(e) Save instance state
+ 
