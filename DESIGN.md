@@ -80,25 +80,25 @@ About the format of the description: (i), (ii), (iii), link to picure.
     If the user (3.1) selects a charity or (3.2) names a charity, we will see a table, with above it the name of the charity which has been selected, or if she has clicked "Name a charity" a box into which she can fill in the name of a charity herself. She cannot fill in the name of a charity she has already selected (for this particular calculation), and cannot fill in the name of a charity she already named. (The user also cannot select a charity with the same name as a charity she named herself). If she tries to do this, she will be notified. Both the selecting and naming can be done several times, but it seems useful to have a limit. (If there are more tables than can fit on the screen the user can scroll through them, but e.g. the buttons remain where they are).
       Required: method to make table if a charity is clicked in the listview; method to make a table if "Name a charity" with  
       is clicked (or put this in the same method with an if statement or something). For the specific requirements of the table, relevant for these methods, see (4)-(8). The methods to create tables also have to implement some of the stuff mentioned in (4)-(8).
-      The table has X rows and three columns. The three columns are:
+      The table has 4 rows and three columns. The three columns are:
       (4) Outcome (left): (Above the top most table directly above this column is a text such as: "The charity achieves what it aims to do: "). The boxes from this column have texts like "Completely", "Almost", "Slightly", "Not at all." This content cannot be changed. The number of outcomes determines the number of rows.
-        Required: @@@@@@@@@@@@@@@@@@@@@@@@@@@
-      (5) Probability (middle):(Above the top most table directly above this column is a text such as: "The probability that this outcome will come about is: "). The user has to insert an integer in each of the boxes, which represents the probability that the user assigns to an outcome (such as that the charitiy achieves what it aims to do completely) coming about. The total has to be 100. Sophisticated way of doing this @@@@. Each table has a box which says how many percent should still be devided amongst the options, or how much the user has exceeded the 100 (Ideally, the box should say 0). (see also (7) below).
-        Required: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        Required: the create-table method(s) has to make a table with four rows and three columns. In the first column, from the top to bottom, it says in the top box "Completely", etc. The create-table method should remember or determine the number of tables already created. If it is the first, then above this table it should put the text ("The charity ..."). If not, it shouldn't add the text but should put this table below the ones already there, without overriding or altering the already existing tables.
+      (5) Probability (middle):(Above the top most table directly above this column is a text such as: "The probability that this outcome will come about is: "). The user has to 100% over all the outcomes, so assign a probability to the outcome coming about. The total should be a 100. There should be a user friendly, easy way to do this. Just typing in probabilities, and then changing them in other boxes because the total has to be a 100 is too annoying, so I'll have to think of some otherway. Don't know what this is yet.
+        Required: method (accessed by clicking on a box for probabilities or something) to easily divide 100% of probabilities over four boxes.
       (6) Value (right): (Above the top most table directly above this column is a text such as: "The numerical value assigned to this outcome is: "). The user has to insert an integer. If she tries to do otherwise, she will be notified.
-        Required: @@@@@@@@@@@@@@@@@@
+        Required: method (accessed by clicking on a box for numerical values) to insert numerical values. If the user tries to insert something else or an integer which is too big, she will be notified.
   (7) Each table has a button with the text "No clue!" If the user doesn't know what probabilities she should assign to the outcomes, she can opt to rely on the judgements of other users. Users can share the probabilities they assign to outcomes of particular charities via Firebase (see below, Save_New_Charity_Activity), and these can be combined and then used by other users. But, if the charity is named by the user, there is no data from other users, so the probabilities will be assigned equally to all outcomes.
-    Required: @@@@@@@@@@@
+    Required: method to get to Firebase @@@@@@@@@@@@@@@@@@@
   (8) Each table has a button with the text "Remove" which deletes the charity from the calculation. All content will be lost. The user will be asked if she's sure before it actually happens.
-    Required: @@@@
+    Required: button; onClick to delete specific table and it's content.
   (8) Clik a button with the text "Save new charity." The user will be directed to Save_New_Charity_Activity (see below).
-    Required: @@@@@
+    Required: button; onClick with intent to go to Save_New_Charity; method to save all tables and content, if there're any (same as (9)).
   (9) Click a button with the text "Add saved charity." The user will be directed to Add_Saved_Charity_Activity (see below).
-    Required: @@@@@
+    Required: button; onClick with intent to go to Add_Saved_Charity; method to save all tables and content, if there're any (same as (8) & (11)).
   (10) Click a button with the text "Show shared charities." The user is shown a list of all other charities, along with the calculations, shared by other users. (the user can save and share one herself via Save_New_Charity). They are sorted as follows: if a user has selected charities already, these are on top. Otherwise they're ordered alphabetically.
-    Required: @@@@@@
+    Required: method to get to Firebase @@@@@@@@@.
   (11) Click a button with the text "Calculate!" as soon as there are two charities. All probabilities have to be properly assigned, and all outcomes have to have numerical values attatched to them. If something isn't done, the user will be notified what specifically is wrong. If all is well, she will be directed to Calculate_Activity. But, first the expected utility of all charities will be calculated, and the conclusions are given to an intent to go to Calculate_Activity.
-    Required: @@@@@@
+    Required: method to check if there are two tables (see also method for creating tables, which also has to keep track of the number of tables) & to show button; method for button (or via the same method) with onClick to go to Calculate_Activity ; method to store all tables and content so that they can be retrieved if the user returns (see also (8) & (9))
 (iii) Also required:
   (a) Check to see if the user is logged in via Firebase as soon as the user reaches this Activity. If not, she will be redirected to Login_Activity. If she is, nothing happens (so she remains on this page).
     Required: @@@@@@
