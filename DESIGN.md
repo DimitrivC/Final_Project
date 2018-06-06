@@ -14,7 +14,7 @@ About the format of the description: (i), (ii), (iii), link to picure.
     Required:
   (c) By pressing backpressbutton via Main_Activity. (but, this should be overrided: the user should then leave the app?).
     Required:
-  (d) By pressing bakcpressbutton via Main_Activity.
+  (d) By pressing bakcpressbutton via Create_New_Account_Activity
     Required:
 (ii) The user can:
   (1) Click on the information Icon. If she does, she will see a @Fragment, with text explaining the app.
@@ -28,12 +28,12 @@ About the format of the description: (i), (ii), (iii), link to picure.
     Required: connection to Firebase.
   (b) Nice background
     Required:
-  (c) Nice picture which is somehow relevant to both calculating EU & Charities.
+  (c) Nice picture which is somehow relevant to both calculating expected utility & Charities.
     Required:
   (d) Title of app
     Required:
   (e) Very brief description of app directly below title.
-    Required:  
+    Required:
   
 ## Create_New_Account_Activity
 (i) The user can reach this Activity via:
@@ -57,7 +57,7 @@ About the format of the description: (i), (ii), (iii), link to picure.
     Required:
   (d) Brief description about what the user can/should do here (enter username and password to create new account...)
     Required:
-  
+    
   
 ## Main_Activity
 (i) The user can reach this via:
@@ -74,23 +74,26 @@ About the format of the description: (i), (ii), (iii), link to picure.
     Required: Button for Logging out saying "Log out" (xml file); onClick function added to button (xml); onClick function for button (java) containing: Firebase thing for loggin out; intent to go to Login_Activity; finish.
   (3) Click on a button with the text "Add charity". She will see a scrollable list attached to the button:
     Required: button; onClick; scrolable list
-    (3.1) On the list If the user clicks on the "Add charity" button, she will see a list, attached to the button, which she can scroll down. The list contains names of charities retrieved via the API: http://developer.everydayhero.com/charities/
-        Required: list should be filled with API content, dynamic; options should be clickable.
-    (3.2) Name a charity. At the top of the list, there's an option "Insert charity." If the users clicks this, there will be a table, with no name:
-      If the user (3.1) selects a charity or (3.2) names a charity, we will see a table, with above it the name of the charity which has been selected, or @@@ name inserted isn't there yet.
+    (3.1) The list contains via an API: http://developer.everydayhero.com/charities/. She can click on one of the charities on the list.
+      Required: list should be filled with API content, dynamic; options should be clickable.
+    (3.2) At the top of the list, there's an option "Name a charity." The user can also click on this.
+      Required:
+    If the user (3.1) selects a charity or (3.2) names a charity, we will see a table, with above it the name of the charity which has been selected, or if she has clicked "Name a charity" a box into which she can fill in the name of a charity herself. She cannot fill in the name of a charity she has already selected (for this particular calculation), and cannot fill in the name of a charity she already named. (The user also cannot select a charity with the same name as a charity she named herself). If she tries to do this, she will be notified. Both the selecting and naming can be done several times, but it seems useful to have a limit. (If there are more tables than can fit on the screen the user can scroll through them, but e.g. the buttons remain where they are).
+      Required:
       The table has X rows and three columns. The three columns are:
-      Outcome (left): (Above the top most table directly above this column is the text: ). This content cannot be changed. The number of outcomes determines the number of rows.
+      (4) Outcome (left): (Above the top most table directly above this column is a text such as: "The charity achieves what it aims to do: "). The boxes from this column have texts like "Completely", "Almost", "Slightly", "Not at all." This content cannot be changed. The number of outcomes determines the number of rows.
         Required:
-      Probability (middle):
+      (5) Probability (middle):(Above the top most table directly above this column is a text such as: "The probability that this outcome will come about is: "). The user has to insert an integer in each of the boxes, which represents the probability that the user assigns to an outcome (such as that the charitiy achieves what it aims to do completely) coming about. The total has to be 100. Sophisticated way of doing this @@@@. Each table has a box which says how many percent should still be devided amongst the options, or how much the user has exceeded the 100 (Ideally, the box should say 0). Each table also has a button with the text "No clue!" If the user clicks on this, all outcomes will be assigned equal probabilities (if the user has already filled in probabilities, she will be asked if she's sure before the probabilities are changed).
         Required:
-      Value (right):
-        Required:
-      Both the selecting and inserting can be done multiple times, but it seems that it's useful to have a limit to the amount that can be selected/named.
-      
-  (6) Clik a button:
-  Calculate button. If she hasn't done what was required, she will be notified. Specifically: @@.
-  Save new Charity
-  Add Saved charity.
+      (6) Value (right): (Above the top most table directly above this column is a text such as: "The numerical value assigned to this outcome is: "). The user has to insert an integer. If she tries to do otherwise, she will be notified.
+        Required:  
+  (7) Clik a button with the text "Save new charity."
+    Required:
+  (8) Click a button with the text "Add saved charity."
+    Required:
+  (9) Click a button with the text "Show saved charity."
+    Required:
+  (10) Click a button with the text "Calculate!" If she hasn't done what was required, she will be notified. Specifically: @@
     Required:
 (iii) Also required:
   (a) Check to see if the user is logged in via Firebase as soon as the user reaches this Activity. If not, she will be redirected to Login_Activity. If she is, nothing happens (so she remains on this page).
@@ -111,7 +114,10 @@ About the format of the description: (i), (ii), (iii), link to picure.
       Required: box for that content; data has to be taken from intent from Main_Activity.
   (3) If the charitiy with the highest expected utility was selected rather than inserted, there is a button she can click to direct herself to the website of the charity.
       Required: button with text "Go to the website of "insert charity name here""(xml); onClick function added to button (xml); onClick  function for button (java) containing: method for going to website of charity; finishig this activity? No, don't think so.
-  (4) Click a button to do the calculations again.
+  (4) Click on a button with the text "Share calculations" to share the calculation & results with other users.
+    Required:
+  (5) Click on a button with the text "Show other calculations" to see calculations shared by others via Firebase.
+    Required:
   (5) Click on button with text "Log out" to log out.
     Required: button with text "Log out" (xml); onClick for that button (xml); onClick for that button (java) containing: function to log out from Firebase & redirect to Login_Activity via intent.
 (iii) Also required:
