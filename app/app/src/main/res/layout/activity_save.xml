@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.dimitrivc.final_project.SaveActivity">
+
+    <!-- to save the charity which has been created.
+    This will not return her to table since she might want to add
+    another charity.-->
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToLoginSave"
+        android:text="Log out" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+
+    <!-- to go back to Table, whether or not a new charity has been
+    saved. If the creating of one has been started, it should be asked
+    if the user would like to save it first.-->
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToTableSave"
+        android:text="Return to the calculator" />
+
+    <!-- To edit all charities which have been saved earlier. A list will
+    be shown of all charities, the user can select one. She'll see the
+    table and can then click on it to edit the content.-->
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit" />
+
+
+</LinearLayout>
