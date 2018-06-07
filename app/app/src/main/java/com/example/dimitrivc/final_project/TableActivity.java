@@ -36,7 +36,7 @@ public class TableActivity extends AppCompatActivity {
 
         String url = "https://charitybase.uk/api/v0.2.0/charities";
 
-        JsonObjectRequest jsonObjectRequest = new jsonObjectRequest
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>(){
                     @Override
                     public void onResponse(JSONObject response) {
@@ -62,18 +62,7 @@ public class TableActivity extends AppCompatActivity {
                 });
         requestQueue.add(jsonObjectRequest);
 
-
-
-
-
-
     } // end onCreate
-
-
-
-
-
-
 
 
     public void goToCalculate(View view) {
@@ -85,4 +74,10 @@ public class TableActivity extends AppCompatActivity {
         Intent intent = new Intent (this, CalculateActivity.class);
         startActivity(intent);
     }
-}
+
+    public void goToLoginTable(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+} // end class
