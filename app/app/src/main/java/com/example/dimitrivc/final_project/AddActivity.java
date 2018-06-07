@@ -19,4 +19,9 @@ public class AddActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TableActivity.class);
         startActivity(intent);
     }
+
+    public void goToLoginAdd(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }

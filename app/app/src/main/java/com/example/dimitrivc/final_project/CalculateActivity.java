@@ -22,5 +22,11 @@ public class CalculateActivity extends AppCompatActivity {
     // to go back to the calculation
     public void goToTableRestore(View view) {
         Intent intent = new Intent (this, TableActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToLoginCalculate(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

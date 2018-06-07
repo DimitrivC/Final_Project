@@ -18,6 +18,18 @@
         android:text="Log out" />
 
     <Button
+        android:id="@+id/button10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit" />
+
+    <Button
+        android:id="@+id/button18"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add charity" />
+
+    <Button
         android:id="@+id/button8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,11 +48,6 @@
     <!-- To edit all charities which have been saved earlier. A list will
     be shown of all charities, the user can select one. She'll see the
     table and can then click on it to edit the content.-->
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Edit" />
 
 
 </LinearLayout>

@@ -19,7 +19,7 @@ public class SaveActivity extends AppCompatActivity {
     }
 
     public void goToLoginSave(View view) {
-        Intent intent = new Intent (this, TableActivity.class);
+        Intent intent = new Intent (this, MainActivity.class);
         startActivity(intent);
     }
 }

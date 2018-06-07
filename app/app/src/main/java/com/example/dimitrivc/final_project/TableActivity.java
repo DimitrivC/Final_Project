@@ -80,4 +80,8 @@ public class TableActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToSave(View view) {
+        Intent intent = new Intent(this, SaveActivity.class);
+        startActivity(intent);
+    }
 } // end class

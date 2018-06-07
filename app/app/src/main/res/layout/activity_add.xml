@@ -8,6 +8,13 @@
     tools:context="com.example.dimitrivc.final_project.AddActivity">
 
     <Button
+        android:id="@+id/button17"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToLoginAdd"
+        android:text="Log out" />
+
+    <Button
         android:id="@+id/button7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

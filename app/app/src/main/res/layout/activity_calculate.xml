@@ -8,6 +8,19 @@
     tools:context="com.example.dimitrivc.final_project.CalculateActivity">
 
     <Button
+        android:id="@+id/button20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToLoginCalculate"
+        android:text="Log out" />
+
+    <Button
+        android:id="@+id/button19"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show other calculations" />
+
+    <Button
         android:id="@+id/button4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
