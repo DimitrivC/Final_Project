@@ -3,13 +3,21 @@ package com.example.dimitrivc.final_project;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class TableActivity extends AppCompatActivity {
 
@@ -21,23 +29,42 @@ public class TableActivity extends AppCompatActivity {
         //jsonObject: {
         //jsonArray: [
 
-        // https://www.programmableweb.com/api/social-actions
-        // dahdfha
-    // API: http://developer.everydayhero.com/charities/
-        // to get a list of all charities:  GET https://everydayhero.com/api/v2/charities
-        // to get question and answers from API
+        // get TextView to put content API
+        final TextView textView = findViewById(R.id.textView);
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        String url = "https://everydayhero.com/api/v2/charities";
+        String url = "https://charitybase.uk/api/v0.2.0/charities";
 
-        jsonObjectRequest jsonObjectRequest = new jsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<jsonObject>()){
+        JsonObjectRequest jsonObjectRequest = new jsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>(){
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
 
-        };
+                            JSONArray jsonArray = response.getJSONArray("charities");
+                            if (jsonArray != null){
 
-        // get TextView to put content API
-        TextView textView = findViewById(R.id.textView);
-        // set content API in textView
-        textView.setText("bla");
+                                textView.setText(jsonArray.getJSONObject(0).getString("name"));
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("error", String.valueOf(error));
+                        textView.setText("@string/error2");
+                    }
+                });
+        requestQueue.add(jsonObjectRequest);
+
+
+
+
 
 
     } // end onCreate
