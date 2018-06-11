@@ -38,7 +38,14 @@
         android:id="@+id/button14"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add charity" />
+        android:onClick="goToSelect"
+        android:text="Add new charity" />
+
+    <!--<ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="false"/>-->
 
     <TextView
         android:id="@+id/textView"
@@ -52,4 +59,5 @@
         android:layout_height="wrap_content"
         android:onClick="goToCalculate"
         android:text="Calculate!" />
+
 </LinearLayout>

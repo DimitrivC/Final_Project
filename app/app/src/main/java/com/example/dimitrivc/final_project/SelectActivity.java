@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -13,7 +15,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,30 +24,36 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
-public class TableActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class SelectActivity extends AppCompatActivity {
     // for Firebase authentification
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_table);
+        setContentView(R.layout.activity_select);
         // for Firebase autenthification
         mAuth = FirebaseAuth.getInstance();
 
 
-        ////////////////// for API:
+        // make button visible
+        // besides .INVISIBLE, there's also .GONE!!!!
 
-        //jsonObject: {
-        //jsonArray: [
 
-        // get TextView to put content API
-        final TextView textView = findViewById(R.id.textView);
-
+        final TextView textView = findViewById(R.id.textView2);
+        // get access to listView
+        final ListView listView = findViewById(R.id.listView);
+        final List<String> listdata = new ArrayList<>();
+        final ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(
+                        this,
+                        android.R.layout.simple_list_item_1,
+                        listdata);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-
         String url = "https://charitybase.uk/api/v0.2.0/charities";
-
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>(){
                     @Override
@@ -56,8 +63,13 @@ public class TableActivity extends AppCompatActivity {
                             JSONArray jsonArray = response.getJSONArray("charities");
                             if (jsonArray != null){
 
-                                textView.setText(jsonArray.getJSONObject(0).getString("name"));
+                                // iterate over data to get names of all charities
+                                for (int i = 0; i < 10; i++) {
+                                    listdata.add(jsonArray.getJSONObject(i).getString("name"));
+                                }
 
+                                // set adapter with names charities to listView
+                                listView.setAdapter(adapter);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -72,11 +84,22 @@ public class TableActivity extends AppCompatActivity {
                     }
                 });
         requestQueue.add(jsonObjectRequest);
-        /////////////////// end for API
+
+        // check if item listView was clicked, go to TableActivity with name charity
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                // get name of charity which has been clicked on
+                String selectedFromList = (listView.getItemAtPosition(position).toString());
+                // add name charity to intent to go to TableActivity
+                startActivity(new Intent(SelectActivity.this, MakeTableActivity.class).
+                        putExtra("name charity", selectedFromList));
+            }
+        });
+
     } // end onCreate
 
-
-    // check if user is signed in, act accordingly
     @Override
     public void onStart() {
         super.onStart();
@@ -89,30 +112,10 @@ public class TableActivity extends AppCompatActivity {
     }
 
     // sign out user, go to MainActivity
-    public void goToLoginTable(View view) {
+    public void goToLoginSelect(View view) {
         // sign out user
         FirebaseAuth.getInstance().signOut();
         // go to MainActivity
         startActivity(new Intent(this, MainActivity.class));
     }
-
-    public void goToCalculate(View view) {
-        Intent intent = new Intent(this, CalculateActivity.class);
-        startActivity(intent);
-    }
-
-    public void goToAdd(View view) {
-        Intent intent = new Intent (this, CalculateActivity.class);
-        startActivity(intent);
-    }
-
-
-    public void goToSave(View view) {
-        Intent intent = new Intent(this, SaveActivity.class);
-        startActivity(intent);
-    }
-
-    public void goToSelect(View view) {
-        startActivity(new Intent(this, SelectActivity.class));
-    }
-} // end class
+}
