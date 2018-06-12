@@ -38,7 +38,6 @@ public class SelectActivity extends AppCompatActivity {
         // for Firebase autenthification
         mAuth = FirebaseAuth.getInstance();
 
-
         // make button visible
         // besides .INVISIBLE, there's also .GONE!!!!
 
@@ -97,8 +96,6 @@ public class SelectActivity extends AppCompatActivity {
                         putExtra("name charity", selectedFromList));
             }
         });
-
-        ////
     } // end onCreate
 
     @Override
