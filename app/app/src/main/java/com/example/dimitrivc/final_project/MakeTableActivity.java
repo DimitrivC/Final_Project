@@ -3,6 +3,8 @@ package com.example.dimitrivc.final_project;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -17,7 +19,6 @@ public class MakeTableActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,141 +26,215 @@ public class MakeTableActivity extends AppCompatActivity {
         // for Firebase autenthification
         mAuth = FirebaseAuth.getInstance();
 
+        // set name selected charity in TextView
+        Intent intent = getIntent();
+        Bundle name = intent.getExtras();
+        if (name != null) {
+            String nameCharity = name.get("name charity").toString();
+            // add exception
+            TextView textView = findViewById(R.id.textView3);
+            textView.setText(nameCharity);
+        }
+
         // initializing SeekBars
         final SeekBar seekBar1 = findViewById(R.id.seekBar5);
         final SeekBar seekBar2 = findViewById(R.id.seekBar);
         final SeekBar seekBar3 = findViewById(R.id.seekBar3);
         final SeekBar seekBar4 = findViewById(R.id.seekBar4);
-
         // initializing EditTexts to put probabilities
         final EditText editText1 = findViewById(R.id.editText11);
         final EditText editText2 = findViewById(R.id.editText10);
         final EditText editText3 = findViewById(R.id.editText9);
         final EditText editText4 = findViewById(R.id.editText8);
-
         // set probability SeekBars to 25%
-        seekBar1.setProgress(25);
-        seekBar2.setProgress(25);
-        seekBar3.setProgress(25);
-        seekBar4.setProgress(25);
-
+        seekBar1.setProgress(2500);
+        seekBar2.setProgress(2500);
+        seekBar3.setProgress(2500);
+        seekBar4.setProgress(2500);
         // initialize EditTexts to set value to probability of 25%
         editText1.setText(String.valueOf(25));
         editText2.setText(String.valueOf(25));
         editText3.setText(String.valueOf(25));
         editText4.setText(String.valueOf(25));
 
-        final TextView textView = findViewById(R.id.textView8);
-        final TextView textView2 = findViewById(R.id.textView7);
-
-        // then method to alter them to get a total of a 100
-        // - if progress changed, let others know: if it went x higher, then the others have to decrease x/3 each. If it went y lower, the others have to go y/3 higher.
-        // - do this via setProgress().
-
-
-        // after method to make things equal:
-        // method for edittext:
-        // and if the edittext is altered, to change the seekbar with them.
-        // make sure that other changes, such that the probability of the others, is changed as well.
-
         // to get probability of first SeekBar, and to set it to EditText.
         seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            // to determine the change in progress of the SeekBar
+            int valueStart = 0;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-//                // to make a total a 100:
-//
-//                // get "old" value of progress
-//                int valueCurrent = Integer.parseInt(editText1.getText().toString());
-//                // get new value of progress
-//                int valueNew = seekBar.getProgress();
-//                // get difference.
-//                int difference = valueCurrent-valueNew;
-//
-//                if (difference > 0){
-//                    // difference is negative. So, the probability of seekBar1 is increased.
-//                    // so, the difference of the other seekbars has to be decreased.
-//
-//                    // take the positive of difference.
-//                    difference = -difference;
-//
-//                    // divide by three (set to float; make max 1000. Perhaps add a box to check total of percentages; just add the progress.)
-//                    int divided = difference/3;
-//
-//                    // make it a float somehow.
-//                    // or, just do it later.
-//
-//                    textView.setText(String.valueOf(difference));
-//                    textView2.setText(String.valueOf(divided));
-//                    // get the progress from others
-//                    // subtract from progress the result of the division
-//                    // set as new progress
-//                }
-//                else {
-//                    // difference is positive. So, the probability of seekBar1 has decreased.
-//                    // so, the difference of the others has to be increased.
-//
-//                    // divide the difference by three
-//                    // get the progress from others
-//                    // add the difference divided to the progress
-//                    // set as new progress
-//                }
-
-                // set probability to correct amount
-                editText1.setText(String.valueOf(seekBar.getProgress()));
-
-            }
-            // stuff I don't use but have to implement.
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar1) {
+                // set probability to correct amount while user is moving SeekBar
+                editText1.setText(String.valueOf(seekBar.getProgress()/100));
             }
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar1) {
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // get the starting value
+                valueStart = seekBar.getProgress();
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // get the final value
+                int valueEnd = seekBar.getProgress();
+                // set probabilities other Seekbars so that total is 100
+                setSeekBar(valueStart, valueEnd, seekBar2, seekBar3, seekBar4);
             }
         });
 
         seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            // to determine the change in progress of the SeekBar
+            int valueStart = 0;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                editText2.setText(String.valueOf(seekBar.getProgress())+ "%");
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar1) {
+                // set probability to correct amount while user is moving SeekBar
+                editText2.setText(String.valueOf(seekBar.getProgress()/100));
             }
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar1) {
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // get the starting value
+                valueStart = seekBar.getProgress();
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // get the final value
+                int valueEnd = seekBar.getProgress();
+                // set probabilities other Seekbars so that total is 100
+                setSeekBar(valueStart, valueEnd, seekBar1, seekBar3, seekBar4);
             }
         });
 
         seekBar3.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            // to determine the change in progress of the SeekBar
+            int valueStart = 0;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                editText3.setText(String.valueOf(seekBar.getProgress())+ "%");
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar1) {
+                // set probability to correct amount while user is moving SeekBar
+                editText3.setText(String.valueOf(seekBar.getProgress()/100));
             }
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar1) {
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // get the starting value
+                valueStart = seekBar.getProgress();
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // get the final value
+                int valueEnd = seekBar.getProgress();
+                // set probabilities other Seekbars so that total is 100
+                setSeekBar(valueStart, valueEnd, seekBar1, seekBar2, seekBar4);
             }
         });
 
         seekBar4.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            // to determine the change in progress of the SeekBar
+            int valueStart = 0;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                editText4.setText(String.valueOf(seekBar.getProgress())+ "%");
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar1) {
+                // set probability to correct amount while user is moving SeekBar
+                editText4.setText(String.valueOf(seekBar.getProgress()/100));
             }
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar1) {
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // get the starting value
+                valueStart = seekBar.getProgress();
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // get the final value
+                int valueEnd = seekBar.getProgress();
+                // set probabilities other Seekbars so that total is 100
+                setSeekBar(valueStart, valueEnd, seekBar1, seekBar2, seekBar3);
+            }
+        });
+
+        // if the user inserted values in the editText, these will be changed in the progressbar
+        editText1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // if no probability is inserted // but, doesn't work yet. Also, fix something for
+                // if more than 100 is inserted.
+                int insertedValue = 0;
+                // is some probability is inserted, so not empty:
+                if (!editText1.toString().isEmpty()){
+                    // get probability
+                    insertedValue = Integer.parseInt(editText1.getText().toString())*100;
+                }
+                // set SeekBar to correct probability
+                seekBar1.setProgress(insertedValue);
+            }
+        });
+
+        // if the user inserted values in the editText, these will be changed in the progressbar
+        editText2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // if no probability is inserted // but, doesn't work yet. Also, fix something for
+                // if more than 100 is inserted.
+                int insertedValue = 0;
+                // is some probability is inserted, so not empty:
+                if (!editText2.toString().isEmpty()){
+                    // get probability
+                    insertedValue = Integer.parseInt(editText2.getText().toString())*100;
+                }
+                // set SeekBar to correct probability
+                seekBar2.setProgress(insertedValue);
+            }
+        });
+
+        // if the user inserted values in the editText, these will be changed in the progressbar
+        editText3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // if no probability is inserted // but, doesn't work yet. Also, fix something for
+                // if more than 100 is inserted.
+                int insertedValue = 0;
+                // is some probability is inserted, so not empty:
+                if (!editText3.toString().isEmpty()){
+                    // get probability
+                    insertedValue = Integer.parseInt(editText3.getText().toString())*100;
+                }
+                // set SeekBar to correct probability
+                seekBar3.setProgress(insertedValue);
+            }
+        });
+
+        // if the user inserted values in the editText, these will be changed in the progressbar
+        editText4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // if no probability is inserted // but, doesn't work yet. Also, fix something for
+                // if more than 100 is inserted.
+                int insertedValue = 0;
+                // is some probability is inserted, so not empty:
+                if (!editText4.toString().isEmpty()){
+                    // get probability
+                    insertedValue = Integer.parseInt(editText4.getText().toString())*100;
+                }
+                // set SeekBar to correct probability
+                seekBar4.setProgress(insertedValue);
             }
         });
 
@@ -177,6 +252,25 @@ public class MakeTableActivity extends AppCompatActivity {
         }
     }
 
+    // to change probabilities of SeekBars if one of them is altered so that the total is 100
+    public void setSeekBar(Integer valueStart, Integer valueEnd,
+                           SeekBar seekBar1, SeekBar seekBar2, SeekBar seekBar3) {
+        // determine progress
+        int difference = valueStart-valueEnd;
+        // get positive or negative value of difference
+        difference = -difference;
+        // divide by three
+        int divided = difference/3; // it goes wrong here: what happens if you divide? Some amount is lost?
+
+        // perhaps: check how much the total deviates from 10000 (since that is the progress max).
+        // whatever it deviates, subtract or add equal values to all until the total is (close enough)
+        // to a 100?
+
+        // set the progress from others to correct point
+        seekBar1.setProgress(seekBar1.getProgress()-divided);
+        seekBar2.setProgress(seekBar2.getProgress()-divided);
+        seekBar3.setProgress(seekBar3.getProgress()-divided);
+    }
 
     public void calculate(View view) {
 
@@ -220,14 +314,27 @@ public class MakeTableActivity extends AppCompatActivity {
             float probability4 = (float) seekBar4.getProgress()/100;
 
             // calculate the expected utility of the charity
-            float ExpectedUtility = 1*probability1+value2*probability2+value3*probability3+value4*probability4;
-
+            float ExpectedUtility = (1*probability1+value2*probability2+value3*probability3+value4*probability4)/100;
 
             // TEST: to see if EU is correct, which it is.
-            TextView textTest = findViewById(R.id.textView3);
-            textTest.setText(String.valueOf(ExpectedUtility));
+            //TextView textTest = findViewById(R.id.textView3);
+            //textTest.setText(String.valueOf(ExpectedUtility));
 
-            // put in intent to go to TableActivity.
+            // to go to TableActivity to add charity & expected utility
+            Intent intent = new Intent(this, TableActivity.class);
+
+            // to get name charity
+            TextView textView = findViewById(R.id.textView3);
+            // add name charity to intent for TableActivity
+            intent.putExtra("name charity", textView.getText().toString());
+
+            // add expected utility calculation to intent for TableActivity
+            intent.putExtra("expected utility", ExpectedUtility);
+
+            // go to TableActivity with expected utility calculation, and name charity
+            startActivity(intent);
+
+
             // put it in textView there, along with name charity.
             // make dynamic listview:
             // with name charity, and expected utility, and then they should be able to click on it, and have the data retrieved.

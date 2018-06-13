@@ -13,7 +13,7 @@
         android:layout_width="175dp"
         android:layout_height="90dp"
         android:layout_weight="1"
-        android:text="Log out"/>
+        android:text="Log out" />
 
     <TextView
         android:id="@+id/textView3"
@@ -74,8 +74,8 @@
             android:id="@+id/seekBar5"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:max="100"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:max="10000" />
 
         <EditText
             android:id="@+id/editText11"
@@ -94,7 +94,6 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-
         <TextView
             android:id="@+id/textView6"
             android:layout_width="7dp"
@@ -108,15 +107,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="number"
-            android:hint="value" />
+            android:hint="value"
+            android:inputType="number" />
 
         <SeekBar
             android:id="@+id/seekBar"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:max="100"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:max="10000" />
 
         <EditText
             android:id="@+id/editText10"
@@ -155,8 +154,8 @@
             android:id="@+id/seekBar3"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:max="100"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:max="10000" />
 
         <EditText
             android:id="@+id/editText9"
@@ -195,8 +194,8 @@
             android:id="@+id/seekBar4"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:max="100"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:max="10000" />
 
         <EditText
             android:id="@+id/editText8"
@@ -214,5 +213,5 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:onClick="calculate"
-        android:text="Done!"/>
+        android:text="Done!" />
 </LinearLayout>

@@ -34,12 +34,20 @@ public class TableActivity extends AppCompatActivity {
         // for Firebase autenthification
         mAuth = FirebaseAuth.getInstance();
 
+        // TODO:
+        // check intent. If intent, then add charity & EU to listview:
 
-        ////////////////// for API:
+        // name charity: EU
+        // remove when long click; go to MakeTable when short click. check To do.
 
-        //jsonObject: {
-        //jsonArray: [
+        // check: https://developer.android.com/reference/android/widget/Adapter
+        // check subclasses and choose best adapter.
+        // see what is useful right now, but also later when I use Firebase to store data
 
+
+        // TODO make sure that if user leaves this Activity & has added charities already, these are saved and added when user returns
+        // TODO remove this:
+        //////////////////////////////////////////////////////////
         // get TextView to put content API
         final TextView textView = findViewById(R.id.textView);
 
@@ -72,7 +80,8 @@ public class TableActivity extends AppCompatActivity {
                     }
                 });
         requestQueue.add(jsonObjectRequest);
-        /////////////////// end for API
+        ////////////////////////////////////////// end for API
+
     } // end onCreate
 
 
@@ -97,18 +106,16 @@ public class TableActivity extends AppCompatActivity {
     }
 
     public void goToCalculate(View view) {
+
+        // TODO: add calculation.
+
         Intent intent = new Intent(this, CalculateActivity.class);
         startActivity(intent);
     }
 
-    public void goToAdd(View view) {
-        Intent intent = new Intent (this, CalculateActivity.class);
-        startActivity(intent);
-    }
-
-
+    // changed: if user wants to Save a new charity, she is forwarded to SelectActivity
     public void goToSave(View view) {
-        Intent intent = new Intent(this, SaveActivity.class);
+        Intent intent = new Intent(this, SelectActivity.class);
         startActivity(intent);
     }
 

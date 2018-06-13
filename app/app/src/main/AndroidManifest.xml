@@ -29,8 +29,6 @@
         <activity android:name=".TableActivity" />
         <activity android:name=".CreateActivity" />
         <activity android:name=".CalculateActivity" />
-        <activity android:name=".SaveActivity" />
-        <activity android:name=".AddActivity" />
         <activity android:name=".SelectActivity" />
         <activity android:name=".MakeTableActivity"></activity>
     </application>
