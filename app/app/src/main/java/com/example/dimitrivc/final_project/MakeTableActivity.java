@@ -13,11 +13,17 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MakeTableActivity extends AppCompatActivity {
     // for Firebase authentification
     private FirebaseAuth mAuth;
 
+    // to read and write to Firebase
+    //private DatabaseReference mDatabase;
+
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,9 @@ public class MakeTableActivity extends AppCompatActivity {
         setContentView(R.layout.activity_make_table);
         // for Firebase autenthification
         mAuth = FirebaseAuth.getInstance();
+
+        // to add charity to list of charities in Firebase
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         // set name selected charity in TextView
         Intent intent = getIntent();
@@ -307,7 +316,7 @@ public class MakeTableActivity extends AppCompatActivity {
             SeekBar seekBar3 = findViewById(R.id.seekBar3);
             SeekBar seekBar4 = findViewById(R.id.seekBar4);
 
-            // get the probabilities assigned to the outcomes
+            // get the probabilities assigned to the outcomes for calculation.
             float probability1 = (float) seekBar1.getProgress()/100;
             float probability2 = (float) seekBar2.getProgress()/100;
             float probability3 = (float) seekBar3.getProgress()/100;
@@ -325,20 +334,35 @@ public class MakeTableActivity extends AppCompatActivity {
 
             // to get name charity
             TextView textView = findViewById(R.id.textView3);
+
+            // get name charity
+            String nameCharity = textView.getText().toString();
+
             // add name charity to intent for TableActivity
-            intent.putExtra("name charity", textView.getText().toString());
+            intent.putExtra("name charity", nameCharity);
 
             // add expected utility calculation to intent for TableActivity
             intent.putExtra("expected utility", ExpectedUtility);
 
+            // get userId current user to store charity in correct place
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            String userId = currentUser.getUid();
+            // fix exception
+
+            //textView.setText(userId);
+            // = userId != null
+
+            // make object to store Charity info in Firebase
+            Charity aCharity = new Charity(nameCharity, ExpectedUtility,
+                    1, value2, value3, value4,
+                    probability1, probability2, probability3, probability4);
+
+
+            // add the charity to list of added charities
+            mDatabase.child("users").child(userId).child("listAddedCharities").push().setValue(aCharity);
+
             // go to TableActivity with expected utility calculation, and name charity
-            startActivity(intent);
-
-
-            // put it in textView there, along with name charity.
-            // make dynamic listview:
-            // with name charity, and expected utility, and then they should be able to click on it, and have the data retrieved.
-            // so, it should be saved in Firebase.
+            //startActivity(intent);
 
         }
     }

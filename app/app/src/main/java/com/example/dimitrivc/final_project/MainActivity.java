@@ -2,6 +2,8 @@ package com.example.dimitrivc.final_project;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -88,11 +91,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, CreateActivity.class));
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.score_dialog, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
+    // if information button clicked, show info in dialogfragment
+    public void showInformation(View view) {
+
+//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//        InformationFragment fragment = new InformationFragment();
+//
+//        TextView textView = findViewById(R.id.fragmentTextView);
+//        textView.setText("test test test");
+//
+//        fragment.show(ft, "dialog");
+    }
 
 } // end class
