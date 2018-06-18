@@ -16,10 +16,10 @@
         android:text="Log out" />
 
     <Button
-        android:id="@+id/button15"
+        android:id="@+id/buttonSaveCharity"
         android:layout_width="145dp"
         android:layout_height="55dp"
-        android:onClick="goToSave"
+        android:onClick="goToSelect"
         android:layout_toRightOf="@+id/button13"
         android:text="Save a charity" />
 
@@ -28,7 +28,7 @@
         android:layout_width="145dp"
         android:layout_height="55dp"
         android:text="Shared charities"
-        android:layout_toRightOf="@+id/button15"/>
+        android:layout_toRightOf="@+id/buttonSaveCharity"/>
 
     <TextView
         android:id="@+id/textView14"
@@ -38,7 +38,7 @@
         android:layout_marginTop="50dp"/>
 
     <Button
-        android:id="@+id/button14"
+        android:id="@+id/buttonAddCharity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="goToSelect"
@@ -49,13 +49,15 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button14"
+        android:layout_below="@+id/buttonAddCharity"
         android:text="TextView" />
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/listViewTop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="top"
+        android:layout_marginTop="200dp"
         android:focusable="false"/>
 
     <Button

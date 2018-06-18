@@ -16,13 +16,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 public class MakeTableActivity extends AppCompatActivity {
     // for Firebase authentification
     private FirebaseAuth mAuth;
 
-    // to read and write to Firebase
-    //private DatabaseReference mDatabase;
-
+    // to write to Database
     private DatabaseReference mDatabase;
 
     @Override
@@ -32,7 +32,7 @@ public class MakeTableActivity extends AppCompatActivity {
         // for Firebase autenthification
         mAuth = FirebaseAuth.getInstance();
 
-        // to add charity to list of charities in Firebase
+        // to write to Database
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         // set name selected charity in TextView
@@ -327,10 +327,7 @@ public class MakeTableActivity extends AppCompatActivity {
 
             // TEST: to see if EU is correct, which it is.
             //TextView textTest = findViewById(R.id.textView3);
-            //textTest.setText(String.valueOf(ExpectedUtility));
-
-            // to go to TableActivity to add charity & expected utility
-            Intent intent = new Intent(this, TableActivity.class);
+            //textTest.setText(String.valueOf(ExpectedUtility))
 
             // to get name charity
             TextView textView = findViewById(R.id.textView3);
@@ -339,30 +336,26 @@ public class MakeTableActivity extends AppCompatActivity {
             String nameCharity = textView.getText().toString();
 
             // add name charity to intent for TableActivity
-            intent.putExtra("name charity", nameCharity);
+            //intent.putExtra("name charity", nameCharity);
 
             // add expected utility calculation to intent for TableActivity
-            intent.putExtra("expected utility", ExpectedUtility);
+            //intent.putExtra("expected utility", ExpectedUtility);
 
-            // get userId current user to store charity in correct place
+            // get UserId to store charity in correct place
             FirebaseUser currentUser = mAuth.getCurrentUser();
             String userId = currentUser.getUid();
             // fix exception
-
-            //textView.setText(userId);
-            // = userId != null
 
             // make object to store Charity info in Firebase
             Charity aCharity = new Charity(nameCharity, ExpectedUtility,
                     1, value2, value3, value4,
                     probability1, probability2, probability3, probability4);
 
-
             // add the charity to list of added charities
             mDatabase.child("users").child(userId).child("listAddedCharities").push().setValue(aCharity);
 
-            // go to TableActivity with expected utility calculation, and name charity
-            //startActivity(intent);
+            // go to TableActivity (where the new charity should be added to the calculation)
+            startActivity(new Intent(this, TableActivity.class));
 
         }
     }

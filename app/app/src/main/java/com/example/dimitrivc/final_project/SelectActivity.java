@@ -18,11 +18,15 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +35,9 @@ public class SelectActivity extends AppCompatActivity {
     // for Firebase authentification
     private FirebaseAuth mAuth;
 
+    // to read and write
+    private DatabaseReference mDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,21 +45,50 @@ public class SelectActivity extends AppCompatActivity {
         // for Firebase autenthification
         mAuth = FirebaseAuth.getInstance();
 
-        // make button visible
-        // besides .INVISIBLE, there's also .GONE!!!!
+        // to read and write
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        // to check if user comes from (1) "Save a charity" or (2) "Add charity to calculation"
+        Intent intent = getIntent();
+        final String buttonName = intent.getStringExtra("button");
 
-        final TextView textView = findViewById(R.id.textView2);
-        // get access to listView
-        final ListView listView = findViewById(R.id.listView);
-        final List<String> listdata = new ArrayList<>();
+        // initialize textViews
+        final TextView textViewTop = findViewById(R.id.textViewTop);
+        final TextView textViewBottom = findViewById(R.id.textViewBottom);
+
+        // check if user clicked button with (1) "Save a charity" or (2) "Add charity to calculation"
+        if (buttonName.equals("buttonSaveCharity")){
+            // set text above listViews
+            textViewTop.setText("Save new charity");
+            textViewBottom.setText("Edit a saved charity");
+        }
+        else if (buttonName.equals("buttonAddCharity")){
+            // set text above listViews
+            textViewTop.setText("Add a charity to the calculation");
+            textViewBottom.setText("Edit an added charity");
+        }
+
+        // get access to listViews
+        final ListView listViewTop = findViewById(R.id.listViewTop);
+        final ListView listViewBottom = findViewById(R.id.listViewBottom);
+
+        // initialize array list for API content
+        final List<String> APIContentArrayList = new ArrayList<>();
+
+        // initalize adapter for API content to go to listViewTop
         final ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(
                         this,
                         android.R.layout.simple_list_item_1,
-                        listdata);
+                        APIContentArrayList);
+
+        // to get API content
         RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        // to get API content
         String url = "https://charitybase.uk/api/v0.2.0/charities";
+
+        // to get API content
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>(){
                     @Override
@@ -64,11 +100,87 @@ public class SelectActivity extends AppCompatActivity {
 
                                 // iterate over data to get names of all charities
                                 for (int i = 0; i < 10; i++) {
-                                    listdata.add(jsonArray.getJSONObject(i).getString("name"));
+
+                                    // put API content in Arraylist
+                                    APIContentArrayList.add(jsonArray.getJSONObject(i).getString("name"));
                                 }
 
-                                // set adapter with names charities to listView
-                                listView.setAdapter(adapter);
+                                // so, if successful, we have now an ArrayList listdata, with the API content.
+                                ValueEventListener postlistener = new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                        // if user clicked button to save a new charity
+                                        if (buttonName.equals("buttonSaveCharity")){
+
+                                            // -get FB saved list (doesn't exist yet: determine children and stuff)
+                                            // -compare content FB saved list & APIContentArrayList
+                                            // make ArrayList for listViewTop: content API not in FB saved list
+                                            // set to adapter
+                                            // make ArrayList for listViewBottom: content FB saved list
+                                            // set to adapter
+
+                                        }
+                                        // if user clicked button to add a charity to the calculation
+                                        else if (buttonName.equals("buttonAddCharity")){
+
+                                            // get FireBase "added" list, and put in ArrayList:
+
+                                            // get userId current user.
+                                            FirebaseUser currentUser = mAuth.getCurrentUser();
+                                            String userId = currentUser.getUid();
+                                            // fix exception for getUid.
+
+                                            // make arraylist for
+                                            ArrayList<String> addedCharitiesArrayList = new ArrayList<>();
+
+                                            // iterate over dataSnapshot to get all added charities
+                                            for (DataSnapshot aDatasnapshot : dataSnapshot.child("users").child(userId).
+                                                    child("listAddedCharities").getChildren()) {
+
+                                                // access children one at the time. add to arraylist?
+                                                Charity aCharity = aDatasnapshot.getValue(Charity.class);
+
+                                                // get from charity name, and expected utility.
+                                                String expectedUtility = String.valueOf(aCharity.expectedUtility);
+                                                String nameCharity = aCharity.charityName;
+
+                                                // add name charity + EU to arraylist
+                                                addedCharitiesArrayList.add(nameCharity);
+                                                addedCharitiesArrayList.add(expectedUtility);
+                                            }
+
+                                            ///////////
+
+                                            // ArrayList for not added charities
+                                            ArrayList<String> notAddedArrayList = new ArrayList<>();
+                                            // iterate over content API
+                                            for (String temp : APIContentArrayList){
+                                                // if content API isn't in added charities list on Firebase
+                                                if (!addedCharitiesArrayList.contains(temp)){
+                                                    // add charity to ArrayList
+                                                    notAddedArrayList.add(temp);
+                                                }
+                                            }
+                                            // set to adapter for listViewTop
+
+                                            // make ArrayList for listViewBottom: content FB added list
+                                            // set to adapter
+                                        }
+
+                                    } // end onDataChange
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+                                        // Getting Score failed, log a message
+                                        Log.w("getting data failed", "loadPost:onCancelled", databaseError.toException());
+                                    }
+                                }; // in TableActivity there's directly below this code, don't know if necessary: mDatabase.addValueEventListener(postListener);
+
+
+
+                                // ArrayList is attatched to adapter; set adapter to ListViewTop
+                                // set adapter with names charities to listViewTop
+                                listViewTop.setAdapter(adapter);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -79,18 +191,24 @@ public class SelectActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("error", String.valueOf(error));
-                        textView.setText("@string/error2");
+                        textViewTop.setText("@string/error2");
                     }
                 });
         requestQueue.add(jsonObjectRequest);
 
-        // check if item listView was clicked, go to TableActivity with name charity
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+
+
+
+
+        // check if item listViewTop was clicked, go to TableActivity with name charity
+        listViewTop.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 // get name of charity which has been clicked on
-                String selectedFromList = (listView.getItemAtPosition(position).toString());
+                String selectedFromList = (listViewTop.getItemAtPosition(position).toString());
                 // add name charity to intent to go to TableActivity
                 startActivity(new Intent(SelectActivity.this, MakeTableActivity.class).
                         putExtra("name charity", selectedFromList));

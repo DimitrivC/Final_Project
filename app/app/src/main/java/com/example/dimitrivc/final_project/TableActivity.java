@@ -14,7 +14,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,7 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -82,7 +80,7 @@ public class TableActivity extends AppCompatActivity {
                         (TableActivity.this, android.R.layout.simple_list_item_1, addedCharitiesArrayList);
 
                 // get access to listview
-                ListView listView = findViewById(R.id.listView);
+                ListView listView = findViewById(R.id.listViewTop);
 
                 // set adapter to listview to show charities.
                 listView.setAdapter(arrayAdapter);
@@ -91,7 +89,7 @@ public class TableActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Getting Score failed, log a message
-                Log.w("getting score failed", "loadPost:onCancelled", databaseError.toException());
+                Log.w("getting data failed", "loadPost:onCancelled", databaseError.toException());
             }
         };
         mDatabase.addValueEventListener(postListener);
@@ -182,13 +180,25 @@ public class TableActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // changed: if user wants to Save a new charity, she is forwarded to SelectActivity
-    public void goToSave(View view) {
-        Intent intent = new Intent(this, SelectActivity.class);
-        startActivity(intent);
-    }
-
+    // if user clicks "Add a charity to calculation" or "Save a charity"
     public void goToSelect(View view) {
-        startActivity(new Intent(this, SelectActivity.class));
+        // to go to SelectActivity and store info
+        Intent intent = new Intent(this, SelectActivity.class);
+        // to get clicked button
+        switch (view.getId()){
+            // handle button "Add a charity to calculation"
+            case R.id.buttonAddCharity:
+                // store info on which button was clicked
+                intent.putExtra("button", "buttonAddCharity");
+                break;
+            // handle button "Save a charity"
+            case R.id.buttonSaveCharity:
+                // store info on which button was clicked
+                intent.putExtra("button", "buttonSaveCharity");
+                break;
+            default:
+                throw new RuntimeException("Unknow button ID");
+        }
+        startActivity(intent);
     }
 } // end class
