@@ -20,8 +20,7 @@
         android:id="@+id/textViewTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button21"
-        android:text="TextViewTop" />
+        android:layout_below="@+id/button21"/>
 
     <ListView
         android:id="@+id/listViewTop"
@@ -35,8 +34,7 @@
         android:id="@+id/textViewBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/listViewTop"
-        android:text="TextViewBottom" />
+        android:layout_below="@+id/listViewTop"/>
 
     <ListView
         android:layout_width="match_parent"

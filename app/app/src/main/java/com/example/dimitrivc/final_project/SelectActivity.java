@@ -56,31 +56,12 @@ public class SelectActivity extends AppCompatActivity {
         final TextView textViewTop = findViewById(R.id.textViewTop);
         final TextView textViewBottom = findViewById(R.id.textViewBottom);
 
-        // check if user clicked button with (1) "Save a charity" or (2) "Add charity to calculation"
-        if (buttonName.equals("buttonSaveCharity")){
-            // set text above listViews
-            textViewTop.setText("Save new charity");
-            textViewBottom.setText("Edit a saved charity");
-        }
-        else if (buttonName.equals("buttonAddCharity")){
-            // set text above listViews
-            textViewTop.setText("Add a charity to the calculation");
-            textViewBottom.setText("Edit an added charity");
-        }
-
         // get access to listViews
         final ListView listViewTop = findViewById(R.id.listViewTop);
         final ListView listViewBottom = findViewById(R.id.listViewBottom);
 
         // initialize array list for API content
         final List<String> APIContentArrayList = new ArrayList<>();
-
-        // initalize adapter for API content to go to listViewTop
-        final ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(
-                        this,
-                        android.R.layout.simple_list_item_1,
-                        APIContentArrayList);
 
         // to get API content
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -105,13 +86,17 @@ public class SelectActivity extends AppCompatActivity {
                                     APIContentArrayList.add(jsonArray.getJSONObject(i).getString("name"));
                                 }
 
+                                // Begin FB stuff:
                                 // so, if successful, we have now an ArrayList listdata, with the API content.
-                                ValueEventListener postlistener = new ValueEventListener() {
+                                ValueEventListener postListener = new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
 
                                         // if user clicked button to save a new charity
                                         if (buttonName.equals("buttonSaveCharity")){
+
+                                            textViewTop.setText("Save new charity");
+                                            textViewBottom.setText("Edit a saved charity");
 
                                             // -get FB saved list (doesn't exist yet: determine children and stuff)
                                             // -compare content FB saved list & APIContentArrayList
@@ -124,7 +109,8 @@ public class SelectActivity extends AppCompatActivity {
                                         // if user clicked button to add a charity to the calculation
                                         else if (buttonName.equals("buttonAddCharity")){
 
-                                            // get FireBase "added" list, and put in ArrayList:
+                                            textViewTop.setText("Add a charity to the calculation");
+                                            textViewBottom.setText("Edit an added charity");
 
                                             // get userId current user.
                                             FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -138,19 +124,18 @@ public class SelectActivity extends AppCompatActivity {
                                             for (DataSnapshot aDatasnapshot : dataSnapshot.child("users").child(userId).
                                                     child("listAddedCharities").getChildren()) {
 
-                                                // access children one at the time. add to arraylist?
+                                                // access children one at the time. add to arraylist
                                                 Charity aCharity = aDatasnapshot.getValue(Charity.class);
 
-                                                // get from charity name, and expected utility.
-                                                String expectedUtility = String.valueOf(aCharity.expectedUtility);
+                                                // get from charity name, (and expected utility).
+                                                //String expectedUtility = String.valueOf(aCharity.expectedUtility);
                                                 String nameCharity = aCharity.charityName;
+                                                // fix exception
 
                                                 // add name charity + EU to arraylist
                                                 addedCharitiesArrayList.add(nameCharity);
-                                                addedCharitiesArrayList.add(expectedUtility);
+                                                //addedCharitiesArrayList.add(expectedUtility);
                                             }
-
-                                            ///////////
 
                                             // ArrayList for not added charities
                                             ArrayList<String> notAddedArrayList = new ArrayList<>();
@@ -162,10 +147,20 @@ public class SelectActivity extends AppCompatActivity {
                                                     notAddedArrayList.add(temp);
                                                 }
                                             }
-                                            // set to adapter for listViewTop
+                                            // initialize adapter for listViewTop
+                                            ArrayAdapter<String> adapter1 = new ArrayAdapter<>
+                                                    (SelectActivity.this,
+                                                            android.R.layout.simple_list_item_1,
+                                                            notAddedArrayList);
+                                            // set adapter to listViewTop
+                                            listViewTop.setAdapter(adapter1);
 
-                                            // make ArrayList for listViewBottom: content FB added list
-                                            // set to adapter
+                                            ArrayAdapter<String> adapter2 = new ArrayAdapter<>
+                                                    (SelectActivity.this,
+                                                            android.R.layout.simple_list_item_1,
+                                                            addedCharitiesArrayList);
+                                            listViewBottom.setAdapter(adapter2);
+
                                         }
 
                                     } // end onDataChange
@@ -174,39 +169,41 @@ public class SelectActivity extends AppCompatActivity {
                                         // Getting Score failed, log a message
                                         Log.w("getting data failed", "loadPost:onCancelled", databaseError.toException());
                                     }
-                                }; // in TableActivity there's directly below this code, don't know if necessary: mDatabase.addValueEventListener(postListener);
+                                };
+                                mDatabase.addValueEventListener(postListener); // End FB DataSnapshot; below more API json stuff:
 
-
-
-                                // ArrayList is attatched to adapter; set adapter to ListViewTop
-                                // set adapter with names charities to listViewTop
-                                listViewTop.setAdapter(adapter);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
-
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("error", String.valueOf(error));
                         textViewTop.setText("@string/error2");
                     }
                 });
-        requestQueue.add(jsonObjectRequest);
+        requestQueue.add(jsonObjectRequest); // end JSON object request for API
 
 
 
 
-
-
-
-        // check if item listViewTop was clicked, go to TableActivity with name charity
+        // check if item listViewTop was clicked, go to TableActivity with appropriate information
         listViewTop.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
+
+                if (buttonName.equals("buttonSaveCharity")){
+
+                    // check what to do
+
+                } else if (buttonName.equals("buttonAddCharity")){
+
+                    // check what to do
+                }
+
                 // get name of charity which has been clicked on
                 String selectedFromList = (listViewTop.getItemAtPosition(position).toString());
                 // add name charity to intent to go to TableActivity
@@ -214,6 +211,26 @@ public class SelectActivity extends AppCompatActivity {
                         putExtra("name charity", selectedFromList));
             }
         });
+
+        // if listViewBottom was clicked, go to TableActivity with appropriate information
+        listViewBottom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                if (buttonName.equals("buttonSaveCharity")){
+
+                    // check what to do
+
+                } else if (buttonName.equals("buttonAddCharity")){
+
+                    // check what to d
+
+                }
+            }
+        });
+
+
+
     } // end onCreate
 
     @Override
