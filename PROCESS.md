@@ -23,3 +23,6 @@ Processbook
 -Firebase charity opslaan en terughalen in list gelukt
 -Aan overview van app: wat kan user allemaal doen? Originele plan herzien.
 -SelectActivity veranderd: laat nu andere charities zien, afhankelijk van knop waarop geduwd is in Table & wat er in FB is opgeslagen (begonnen)
+19-6-2018
+-Select Activity method voor verschillende inputs listviews afgemaakt voor zover mogelijk
+-onItemClicklistener van SelectActivity aanpassing begonnen
