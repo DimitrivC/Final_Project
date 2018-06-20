@@ -29,3 +29,4 @@ Processbook
 20-6-2018
 -Verdree met onItemClickListener van SelectActivity van gister, nog niet af
 -Code op MakeTableActivity herschrijven: herhalingen eruit halen; meer en kortere methods
+-In SelectActivity ook veel in meerdere nieuwe methods gestopt
