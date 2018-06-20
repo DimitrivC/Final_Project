@@ -26,3 +26,6 @@ Processbook
 19-6-2018
 -Select Activity method voor verschillende inputs listviews afgemaakt voor zover mogelijk
 -onItemClicklistener van SelectActivity aanpassing begonnen
+20-6-2018
+-Verdree met onItemClickListener van SelectActivity van gister, nog niet af
+-Code op MakeTableActivity herschrijven: herhalingen eruit halen; meer en kortere methods
