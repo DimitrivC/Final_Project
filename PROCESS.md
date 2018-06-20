@@ -31,3 +31,4 @@ Processbook
 -Code op MakeTableActivity herschrijven: herhalingen eruit halen; meer en kortere methods
 -In SelectActivity ook veel in meerdere nieuwe methods gestopt
 -aan onItemClickListener: nieuwe eigen method ervoor, inhoud herzien en verder uitgewerkt.
+-bij MakeTable: als user aankomt checken wat het doel is, daar begonnen aan de methods ,vooral aan edit added charity
