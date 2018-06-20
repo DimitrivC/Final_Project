@@ -63,7 +63,7 @@ public class TableActivity extends AppCompatActivity {
                 for (DataSnapshot aDatasnapshot : dataSnapshot.child("users").child(userId).
                         child("listAddedCharities").getChildren()) {
 
-                    // access children one at the time. add to arraylist?
+                    // access children one at the time. add to arraylist
                     Charity aCharity = aDatasnapshot.getValue(Charity.class);
 
                     // get from charity name, and expected utility.
@@ -88,7 +88,7 @@ public class TableActivity extends AppCompatActivity {
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Score failed, log a message
+                // Getting data failed, log a message
                 Log.w("getting data failed", "loadPost:onCancelled", databaseError.toException());
             }
         };
