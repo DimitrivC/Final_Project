@@ -64,7 +64,7 @@
             android:text="Totally" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/textViewValueTotally"
             android:layout_width="7dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -78,12 +78,11 @@
             android:max="10000" />
 
         <EditText
-            android:id="@+id/editText11"
+            android:id="@+id/editTextProbability1"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
             android:text="%" />
 
     </LinearLayout>
@@ -102,7 +101,7 @@
             android:text="Almost" />
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/editTextValueAlmost"
             android:layout_width="7dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -118,12 +117,11 @@
             android:max="10000" />
 
         <EditText
-            android:id="@+id/editText10"
+            android:id="@+id/editTextProbability2"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
             android:text="%" />
 
     </LinearLayout>
@@ -142,7 +140,7 @@
             android:text="Slightly" />
 
         <EditText
-            android:id="@+id/editText6"
+            android:id="@+id/editTextValueSlightly"
             android:layout_width="7dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -158,12 +156,11 @@
             android:max="10000" />
 
         <EditText
-            android:id="@+id/editText9"
+            android:id="@+id/editTextProbability3"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
             android:text="%" />
 
     </LinearLayout>
@@ -182,7 +179,7 @@
             android:text="Not at all" />
 
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/editTextValueNotAtAll"
             android:layout_width="7dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -198,20 +195,47 @@
             android:max="10000" />
 
         <EditText
-            android:id="@+id/editText8"
+            android:id="@+id/editTextProbability4"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
             android:text="%" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button23"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:onClick="calculate"
-        android:text="Done!" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonAddToCalculation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add to calculation!"
+            android:onClick="addToCalculation"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/buttonAddAndSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add and Save"
+            android:visibility="gone"
+            android:onClick="addAndSave"/>
+
+        <!--<Button-->
+            <!--android:id="@+id/buttonDone"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:onClick="calculate"-->
+            <!--android:text="Done!"-->
+            <!--android:visibility="gone"/>-->
+
+    </LinearLayout>
+
 </LinearLayout>

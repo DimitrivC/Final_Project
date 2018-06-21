@@ -26,9 +26,9 @@ public class CalculateActivity extends AppCompatActivity {
         super.onStart();
         // to check if user is signed in
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        // if not signed in: go to MainActivity
+        // if not signed in: go to LoginActivity
         if (currentUser == null){
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
         }
     }
 
@@ -44,11 +44,11 @@ public class CalculateActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // sign out user, go to MainActivity
+    // sign out user, go to LoginActivity
     public void goToLoginCalculate(View view) {
         // sign out user
         FirebaseAuth.getInstance().signOut();
-        // go to MainActivity
-        startActivity(new Intent(this, MainActivity.class));
+        // go to LoginActivity
+        startActivity(new Intent(this, LoginActivity.class));
     }
 }

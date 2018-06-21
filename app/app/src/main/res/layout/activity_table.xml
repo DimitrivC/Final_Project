@@ -17,18 +17,30 @@
 
     <Button
         android:id="@+id/buttonSaveCharity"
-        android:layout_width="145dp"
+        android:layout_width="130dp"
         android:layout_height="55dp"
         android:onClick="goToSelect"
         android:layout_toRightOf="@+id/button13"
         android:text="Save a charity" />
 
-    <Button
-        android:id="@+id/button16"
-        android:layout_width="145dp"
-        android:layout_height="55dp"
-        android:text="Shared charities"
-        android:layout_toRightOf="@+id/buttonSaveCharity"/>
+    <!--<Button-->
+        <!--android:id="@+id/button16"-->
+        <!--android:layout_width="125dp"-->
+        <!--android:layout_height="55dp"-->
+        <!--android:text="Shared charities"-->
+        <!--android:layout_toRightOf="@+id/buttonSaveCharity"/>-->
+
+    <ImageButton
+        android:id="@+id/searchImageButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:scaleType="fitCenter"
+        android:layout_marginRight="1dp"
+        android:src="@drawable/really_white_information_sign"
+        android:onClick="showInformation"/>
 
     <TextView
         android:id="@+id/textView14"

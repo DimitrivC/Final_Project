@@ -71,9 +71,9 @@ public class SelectActivity extends AppCompatActivity {
         super.onStart();
         // to check if user is signed in
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        // if not signed in: go to MainActivity
+        // if not signed in: go to LoginActivity
         if (currentUser == null){
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
         }
     } // end onStart
 
@@ -302,11 +302,21 @@ public class SelectActivity extends AppCompatActivity {
     } // end addedCharities
 
 
-    // sign out user, go to MainActivity
+    // sign out user, go to LoginActivity
     public void goToLoginSelect(View view) {
         // sign out user
         FirebaseAuth.getInstance().signOut();
-        // go to MainActivity
-        startActivity(new Intent(this, MainActivity.class));
+        // go to LoginActivity
+        startActivity(new Intent(this, LoginActivity.class));
+    }
+
+    // if information button clicked, show DialogFragment
+    public void showInformation(View view) {
+        // initialize DialogFragment
+        InformationFragment fragment = new InformationFragment();
+        // set text for fragment
+        fragment.setText("Information about this particular page");
+        // show fragment, with text
+        fragment.show(getFragmentManager(), "dialog");
     }
 } // end Activity

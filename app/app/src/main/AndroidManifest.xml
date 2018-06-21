@@ -19,18 +19,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TableActivity" />
-        <activity android:name=".CreateActivity" />
-        <activity android:name=".CalculateActivity" />
-        <activity android:name=".SelectActivity" />
-        <activity android:name=".MakeTableActivity"></activity>
+        <activity android:name=".TableActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CreateActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CalculateActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SelectActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MakeTableActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

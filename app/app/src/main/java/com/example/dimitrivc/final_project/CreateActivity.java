@@ -15,6 +15,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * CreateActivity
+ *
+ * Dimitri van Capelleveen - 29/6/2018
+ *
+ */
+
 public class CreateActivity extends AppCompatActivity {
     // to check current auth state, to create new user
     private FirebaseAuth mAuth;
@@ -25,7 +32,6 @@ public class CreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create);
         // to check auth state, to create new user
         mAuth = FirebaseAuth.getInstance();
-
     }
 
     // check if user is signed in, act accordingly
@@ -40,7 +46,7 @@ public class CreateActivity extends AppCompatActivity {
         }
     }
 
-
+    // if user clicks button to create new account
     public void goToTableCreate(View view) {
 
         // get access to textViews for email and password
@@ -51,12 +57,16 @@ public class CreateActivity extends AppCompatActivity {
         String email = E_mail.getText().toString();
         String password = Password.getText().toString();
 
-        // add: method to check if password is at least seven/more than six characters.
-
-        // pass email and password on to createAccount
-        createAccount(email, password);
-
-    }
+        // check if user inserted password with correct lengt
+        if (password.length()>6) {
+            // pass email and password on to createAccount
+            createAccount(email, password);
+        } // if password is too short
+        else {
+            Toast.makeText(CreateActivity.this, "Password to short.",
+                    Toast.LENGTH_SHORT).show();
+        }
+    } // end goToTableCreate
 
     // create new Firebase account, go to TableActivity if successful
     public void createAccount(String email, String password) {
@@ -70,10 +80,6 @@ public class CreateActivity extends AppCompatActivity {
                             Toast.makeText(CreateActivity.this, "Authentication succeeded.",
                                     Toast.LENGTH_SHORT).show();
 
-                            //FirebaseUser user = mAuth.getCurrentUser();
-
-                            // if user needs a specific object, create one here I guess.
-
                             // forward user to TableActivity
                             startActivity(new Intent(getApplicationContext(), TableActivity.class));
                         } else {
@@ -84,7 +90,15 @@ public class CreateActivity extends AppCompatActivity {
                         }
                     }
                 });
+    } // end createAccount
+
+    // show DialogFragment for Information button
+    public void showInformation(View view) {
+        // initialize DialogFragment
+        InformationFragment fragment = new InformationFragment();
+        // set text for fragment
+        fragment.setText("Information about another page");
+        // show fragment, with text
+        fragment.show(getFragmentManager(), "dialog");
     }
-
-
 }

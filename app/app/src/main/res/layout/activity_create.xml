@@ -15,6 +15,18 @@
         android:textStyle="italic"
         android:layout_marginTop="41dp"/>
 
+    <ImageButton
+        android:id="@+id/searchImageButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:scaleType="fitCenter"
+        android:layout_marginRight="1dp"
+        android:src="@drawable/really_white_information_sign"
+        android:onClick="showInformation"/>
+
     <EditText
         android:id="@+id/editText3"
         android:layout_width="match_parent"

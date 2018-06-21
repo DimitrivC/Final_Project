@@ -158,18 +158,18 @@ public class TableActivity extends AppCompatActivity {
         super.onStart();
         // to check if user is signed in
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        // if not signed in: go to MainActivity
+        // if not signed in: go to LoginActivity
         if (currentUser == null){
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
         }
     }
 
-    // sign out user, go to MainActivity
+    // sign out user, go to LoginActivity
     public void goToLoginTable(View view) {
         // sign out user
         FirebaseAuth.getInstance().signOut();
-        // go to MainActivity
-        startActivity(new Intent(this, MainActivity.class));
+        // go to LoginActivity
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
     public void goToCalculate(View view) {
@@ -200,5 +200,14 @@ public class TableActivity extends AppCompatActivity {
                 throw new RuntimeException("Unknow button ID");
         }
         startActivity(intent);
+    }
+
+    public void showInformation(View view) {
+        // initialize DialogFragment
+        InformationFragment fragment = new InformationFragment();
+        // set text for fragment
+        fragment.setText("Information about this page");
+        // show fragment, with text
+        fragment.show(getFragmentManager(), "dialog");
     }
 } // end class
