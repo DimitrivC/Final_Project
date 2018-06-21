@@ -32,3 +32,8 @@ Processbook
 -In SelectActivity ook veel in meerdere nieuwe methods gestopt
 -aan onItemClickListener: nieuwe eigen method ervoor, inhoud herzien en verder uitgewerkt.
 -bij MakeTable: als user aankomt checken wat het doel is, daar begonnen aan de methods ,vooral aan edit added charity
+21-6-2018
+-Information button with DialogFragment for most activities with activity-specific text
+-methods for MakeTable for when user comes to have the right input/output to/from Firebase
+-password length
+-headers
