@@ -32,3 +32,9 @@ Processbook
 -In SelectActivity ook veel in meerdere nieuwe methods gestopt
 -aan onItemClickListener: nieuwe eigen method ervoor, inhoud herzien en verder uitgewerkt.
 -bij MakeTable: als user aankomt checken wat het doel is, daar begonnen aan de methods ,vooral aan edit added charity
+21-6-2018
+// TODO: doesn't work yet
+                        // TODO: other methods for when user comes
+                        // listview thing for added charities: edit & remove from added list
+                        // information click button with dialog fragment.
+                        // method with probabilities: total 100; if inserted in edittext has impact on all.
