@@ -36,3 +36,4 @@ Processbook
 -Information button with DialogFragment for most activities with activity-specific text
 -methods for MakeTable for when user comes to have the right input/output to/from Firebase
 -password length
+-headers
